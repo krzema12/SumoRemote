@@ -1,4 +1,4 @@
-package eu.mcft.sumoremote;
+package it.krzeminski.sumoremote;
 
 import java.lang.reflect.Method;
 
