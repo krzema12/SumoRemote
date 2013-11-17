@@ -1,7 +1,7 @@
-package it.krzeminski.sumoremote;
+package eu.mcft.sumoremote;
 
-import it.krzeminski.sumoremote.RC5Sender;
 import eu.mcft.sumoremote.R;
+import eu.mcft.sumoremote.RC5Sender;
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
