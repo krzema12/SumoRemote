@@ -3,6 +3,7 @@ package eu.mcft.sumoremote;
 import eu.mcft.sumoremote.R;
 import eu.mcft.sumoremote.RC5Sender;
 import android.os.Bundle;
+import android.os.Handler;
 import android.app.Activity;
 import android.content.Intent;
 import android.view.Menu;
@@ -12,6 +13,7 @@ import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener
 {
@@ -22,6 +24,8 @@ public class MainActivity extends Activity implements OnClickListener
 	TextView address;
 	
 	RC5Sender irSender;
+	
+	boolean doubleBackToExitPressedOnce = false;
 	
 	private final static int PROGRAMMING_ADDRESS  = 0x0B;
 	private final static int STARTING_STOPPING_ADDRESS = 0x07;
@@ -89,5 +93,25 @@ public class MainActivity extends Activity implements OnClickListener
 			irSender.SendCommand(STARTING_STOPPING_ADDRESS, (dohyoAddress<<1)|0);
 		}
 	}
-
+	
+	@Override
+    public void onBackPressed()
+	{
+        if (doubleBackToExitPressedOnce)
+        {
+            super.onBackPressed();
+            return;
+        }
+        
+        this.doubleBackToExitPressedOnce = true;
+        Toast.makeText(this, "Please press BACK again to exit", Toast.LENGTH_SHORT).show();
+        new Handler().postDelayed(new Runnable()
+        {
+            @Override
+            public void run()
+            {
+            	doubleBackToExitPressedOnce = false;   
+            }
+        }, 2000);
+    } 
 }
