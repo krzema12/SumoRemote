@@ -1,4 +1,4 @@
-package it.krzeminski.sumoremote;
+package eu.mcft.sumoremote;
 
 import eu.mcft.sumoremote.R;
 import android.app.Activity;
