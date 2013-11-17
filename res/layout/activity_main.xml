@@ -54,7 +54,7 @@
 
 	    <Button
 	        android:id="@+id/startButton"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dip"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"
 	        android:text="START"
@@ -62,7 +62,7 @@
 	
 	    <Button
 	        android:id="@+id/stopButton"
-	        android:layout_width="wrap_content"
+	        android:layout_width="0dip"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"
 	        android:text="STOP"
