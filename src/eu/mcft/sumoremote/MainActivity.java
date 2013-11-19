@@ -5,6 +5,8 @@ import eu.mcft.sumoremote.RC5Sender;
 import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -37,13 +39,38 @@ public class MainActivity extends Activity implements OnClickListener
 		setContentView(R.layout.activity_main);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-		irSender = new RC5Sender(this.getSystemService("irda"), 38028);
-		
 		programButton = (Button)findViewById(R.id.programButton);
 		startButton = (Button)findViewById(R.id.startButton);
 		stopButton = (Button)findViewById(R.id.stopButton);
 		
 		address = (TextView)findViewById(R.id.address);
+		
+		try
+		{
+			irSender = new RC5Sender(this.getSystemService("irda"), 38028);
+		}
+		catch(Exception e)
+		{
+			programButton.setEnabled(false);
+			startButton.setEnabled(false);
+			stopButton.setEnabled(false);
+			address.setEnabled(false);
+			
+			AlertDialog.Builder builder = new AlertDialog.Builder(this);
+			builder.setTitle("IR emitter not detected")
+				.setCancelable(false)
+				.setMessage("It seems that your device isn't equipped with IR emitter.")
+				.setNegativeButton("I see...", new DialogInterface.OnClickListener()
+				{
+		            public void onClick(DialogInterface dialog, int id)
+		            {
+		                dialog.cancel();
+		            }
+		        });
+			
+			AlertDialog alert = builder.create();
+			alert.show();
+		}
 		
 		programButton.setOnClickListener(this);
 		startButton.setOnClickListener(this);
