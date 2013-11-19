@@ -27,7 +27,7 @@
         android:textSize="35sp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/versionNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/textView1"
@@ -40,8 +40,8 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
+        android:layout_alignLeft="@+id/versionNumber"
+        android:layout_below="@+id/versionNumber"
         android:text="by Piotr Krzemiński (mcft.eu)"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
