@@ -1,7 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SumoRemote</string><string name="action_about">About</string>
-    
+    <string name="app_name">SumoRemote</string>
+    <string name="action_about">About</string>
+    <string name="address">Address (0&#8211;31)</string>
+    <string name="zero">0</string>
+    <string name="program_button">PROGRAM</string>
+    <string name="start_button">START</string>
+    <string name="stop_button">STOP</string>
+    <string name="double_back_toast">Press BACK again to exit</string>
+    <string name="ir_not_detected_title">IR emitter not detected</string>
+    <string name="ir_not_detected_full">It seems that your device is not equipped with IR emitter.</string>
+    <string name="ir_not_detected_button">I see&#8230;</string>
+
+    <string name="author">by Piotr Krzemiński (mcft.eu)</string>
+    <string name="version_dummy">v</string>
+    <string name="app_description">This app acts as a remote for sumo robots, compatible with these modules: http://www.startmodule.com/main-description/.\n\nYour device must be equipped with IR emitter to make the app work!</string>
+    <string name="logo_description">Magnat Cyber Forge Team logo</string>
 
 </resources>

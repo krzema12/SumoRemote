@@ -57,10 +57,10 @@ public class MainActivity extends Activity implements OnClickListener
 			address.setEnabled(false);
 			
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
-			builder.setTitle("IR emitter not detected")
+			builder.setTitle(R.string.ir_not_detected_title)
 				.setCancelable(false)
-				.setMessage("It seems that your device isn't equipped with IR emitter.")
-				.setNegativeButton("I see...", new DialogInterface.OnClickListener()
+				.setMessage(R.string.ir_not_detected_full)
+				.setNegativeButton(R.string.ir_not_detected_button, new DialogInterface.OnClickListener()
 				{
 		            public void onClick(DialogInterface dialog, int id)
 		            {
@@ -131,7 +131,7 @@ public class MainActivity extends Activity implements OnClickListener
         }
         
         this.doubleBackToExitPressedOnce = true;
-        Toast.makeText(this, "Press BACK again to exit", Toast.LENGTH_SHORT).show();
+        Toast.makeText(this, R.string.double_back_toast, Toast.LENGTH_SHORT).show();
         new Handler().postDelayed(new Runnable()
         {
             @Override
