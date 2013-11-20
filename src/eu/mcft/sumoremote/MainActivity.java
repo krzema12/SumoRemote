@@ -6,8 +6,13 @@ import android.os.Bundle;
 import android.os.Handler;
 import android.app.Activity;
 import android.app.AlertDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.res.Resources;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -17,7 +22,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnClickListener
+public class MainActivity extends Activity implements OnClickListener, TextWatcher
 {
 	Button programButton;
 	Button startButton;
@@ -75,6 +80,11 @@ public class MainActivity extends Activity implements OnClickListener
 		programButton.setOnClickListener(this);
 		startButton.setOnClickListener(this);
 		stopButton.setOnClickListener(this);
+		
+		address.addTextChangedListener(this);
+		
+		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+		address.setText(Integer.toString(sharedPref.getInt(getString(R.string.address_preference), 0)));
 	}
 
 	@Override
@@ -140,5 +150,25 @@ public class MainActivity extends Activity implements OnClickListener
             	doubleBackToExitPressedOnce = false;   
             }
         }, 2000);
-    } 
+    }
+
+	@Override
+	public void afterTextChanged(Editable textEdit)
+	{
+		try
+		{
+			int addressValue = Integer.parseInt(address.getText().toString());
+			
+			SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
+			SharedPreferences.Editor editor = sharedPref.edit();
+			editor.putInt(getString(R.string.address_preference), addressValue);
+			editor.commit();
+		}
+		catch(NumberFormatException nfe) { }
+	}
+
+	@Override
+	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) { }
+	@Override
+	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) { } 
 }
