@@ -172,6 +172,19 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 			}
 		}
 		catch(NumberFormatException nfe) { }
+		
+		if(address.getText().toString().equalsIgnoreCase(""))
+		{
+			programButton.setEnabled(false);
+			startButton.setEnabled(false);
+			stopButton.setEnabled(false);
+		}
+		else
+		{
+			programButton.setEnabled(true);
+			startButton.setEnabled(true);
+			stopButton.setEnabled(true);
+		}
 	}
 
 	@Override
