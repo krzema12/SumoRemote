@@ -14,27 +14,31 @@
         android:layout_height="wrap_content"
         android:layout_weight="1" >
 
-	    <TextView
-	        android:id="@+id/textView1"
-	        android:layout_width="wrap_content"
-	        android:layout_height="wrap_content"
-	        android:layout_alignParentLeft="true"
-	        android:layout_alignParentTop="true"
-	        android:text="Address (0-31)"
-	        android:textAppearance="?android:attr/textAppearanceLarge"
-	        android:textSize="30sp" />
-	
 	    <EditText
 	        android:id="@+id/address"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_alignLeft="@+id/textView1"
-	        android:layout_alignRight="@+id/textView1"
-	        android:layout_below="@+id/textView1"
+	        android:layout_alignLeft="@+id/addressLabel"
+	        android:layout_alignRight="@+id/addressLabel"
+	        android:layout_centerVertical="true"
 	        android:ems="10"
-	        android:inputType="numberDecimal"
-	        android:text="0"
-	        android:textSize="40sp" />
+	        android:gravity="center_vertical|center_horizontal"
+	        android:inputType="number"
+	        android:text="@string/zero"
+	        android:textSize="40sp" >
+
+	        <requestFocus />
+	    </EditText>
+
+	    <TextView
+	        android:id="@+id/addressLabel"
+	        android:layout_width="wrap_content"
+	        android:layout_height="wrap_content"
+	        android:layout_above="@+id/address"
+	        android:layout_centerHorizontal="true"
+	        android:text="@string/address"
+	        android:textAppearance="?android:attr/textAppearanceLarge"
+	        android:textSize="30sp" />
 	    
     </RelativeLayout>
 
@@ -43,8 +47,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
-        android:text="PROGRAM"
-        android:textSize="40sp" />
+        android:text="@string/program_button"
+        android:textSize="42sp" />
     
     <LinearLayout
         android:layout_width="match_parent"
@@ -57,16 +61,16 @@
 	        android:layout_width="0dip"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"
-	        android:text="START"
-	        android:textSize="40sp" />
+	        android:text="@string/start_button"
+	        android:textSize="38sp" />
 	
 	    <Button
 	        android:id="@+id/stopButton"
 	        android:layout_width="0dip"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"
-	        android:text="STOP"
-	        android:textSize="40sp" />
+	        android:text="@string/stop_button"
+	        android:textSize="38sp" />
     
     </LinearLayout>
 

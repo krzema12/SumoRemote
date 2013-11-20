@@ -13,46 +13,47 @@
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
         android:layout_centerHorizontal="true"
+        android:contentDescription="@string/logo_description"
         android:scaleType="fitEnd"
         android:src="@drawable/mcft" />
 
     <TextView
-        android:id="@+id/textView1"
+        android:id="@+id/appName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
-        android:text="SumoRemote"
+        android:text="@string/app_name"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="35sp" />
 
     <TextView
-        android:id="@+id/textView2"
+        android:id="@+id/versionNumber"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView1"
-        android:layout_below="@+id/textView1"
-        android:text="v1.0"
+        android:layout_alignLeft="@+id/appName"
+        android:layout_below="@+id/appName"
+        android:text="@string/version_dummy"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="25sp" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/author"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView2"
-        android:layout_below="@+id/textView2"
-        android:text="by Piotr Krzemiński (mcft.eu)"
+        android:layout_alignLeft="@+id/versionNumber"
+        android:layout_below="@+id/versionNumber"
+        android:text="@string/author"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/appDescription"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/textView4"
-        android:layout_below="@+id/textView4"
+        android:layout_alignLeft="@+id/author"
+        android:layout_below="@+id/author"
         android:layout_marginTop="35dp"
-        android:text="This app acts as a remote for sumo robots, compatible with these modules: http://www.startmodule.com/main-description/.\n\nYour device must be equipped with IR emitter to make the app work!"
-        android:textSize="22sp" />
+        android:text="@string/app_description"
+        android:textSize="18sp" />
  
 </RelativeLayout>
