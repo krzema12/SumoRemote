@@ -15,7 +15,7 @@
         android:layout_weight="1" >
 
 	    <TextView
-	        android:id="@+id/appName"
+	        android:id="@+id/addressLabel"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
 	        android:layout_alignParentLeft="true"
@@ -28,11 +28,11 @@
 	        android:id="@+id/address"
 	        android:layout_width="wrap_content"
 	        android:layout_height="wrap_content"
-	        android:layout_alignLeft="@+id/appName"
-	        android:layout_alignRight="@+id/appName"
-	        android:layout_below="@+id/appName"
+	        android:layout_alignLeft="@+id/addressLabel"
+	        android:layout_alignRight="@+id/addressLabel"
+	        android:layout_below="@+id/addressLabel"
 	        android:ems="10"
-	        android:inputType="numberDecimal"
+	        android:inputType="number"
 	        android:text="@string/zero"
 	        android:textSize="40sp" />
 	    

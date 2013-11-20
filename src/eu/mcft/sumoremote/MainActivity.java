@@ -10,7 +10,6 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -19,7 +18,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.WindowManager;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.EditText;
 import android.widget.Toast;
 
 public class MainActivity extends Activity implements OnClickListener, TextWatcher
@@ -28,7 +27,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	Button startButton;
 	Button stopButton;
 	
-	TextView address;
+	EditText address;
 	
 	RC5Sender irSender;
 	
@@ -48,7 +47,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		startButton = (Button)findViewById(R.id.startButton);
 		stopButton = (Button)findViewById(R.id.stopButton);
 		
-		address = (TextView)findViewById(R.id.address);
+		address = (EditText)findViewById(R.id.address);
 		
 		try
 		{
@@ -158,17 +157,25 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		try
 		{
 			int addressValue = Integer.parseInt(address.getText().toString());
-			
 			SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-			SharedPreferences.Editor editor = sharedPref.edit();
-			editor.putInt(getString(R.string.address_preference), addressValue);
-			editor.commit();
+
+			if(addressValue > 31)
+			{
+				address.setText(Integer.toString(sharedPref.getInt(getString(R.string.address_preference), 0)));
+				address.setSelection(address.getText().length());
+			}
+			else
+			{		
+				SharedPreferences.Editor editor = sharedPref.edit();
+				editor.putInt(getString(R.string.address_preference), addressValue);
+				editor.commit();
+			}
 		}
 		catch(NumberFormatException nfe) { }
 	}
 
 	@Override
-	public void beforeTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) { }
+	public void beforeTextChanged(CharSequence prev, int arg1, int arg2, int arg3) { }
 	@Override
 	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) { } 
 }
