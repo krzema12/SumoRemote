@@ -14,14 +14,16 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.View.OnClickListener;
+import android.view.View.OnTouchListener;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnClickListener, TextWatcher
+public class MainActivity extends Activity implements OnClickListener, TextWatcher, OnTouchListener
 {
 	Button programButton;
 	Button startButton;
@@ -32,6 +34,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	RC5Sender irSender;
 	
 	boolean doubleBackToExitPressedOnce = false;
+	int addressValue = 0;
 	
 	private final static int PROGRAMMING_ADDRESS  = 0x0B;
 	private final static int STARTING_STOPPING_ADDRESS = 0x07;
@@ -78,12 +81,12 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		
 		programButton.setOnClickListener(this);
 		startButton.setOnClickListener(this);
-		stopButton.setOnClickListener(this);
+		stopButton.setOnTouchListener(this);	// "onTouch" to handle long pressing
 		
 		address.addTextChangedListener(this);
 		
 		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
-		address.setText(Integer.toString(sharedPref.getInt(getString(R.string.address_preference), 0)));
+		address.setText(Integer.toString(addressValue = sharedPref.getInt(getString(R.string.address_preference), 0)));
 	}
 
 	@Override
@@ -113,22 +116,51 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 
 	@Override
 	public void onClick(View v)
-	{
-		int dohyoAddress = Integer.parseInt(address.getText().toString());
-		
+	{		
 		if(v == programButton)
-		{
-			irSender.SendCommand(PROGRAMMING_ADDRESS, dohyoAddress<<1);
-		}
+			irSender.SendCommand(PROGRAMMING_ADDRESS, addressValue<<1);
 		else if(v == startButton)
-		{
-			irSender.SendCommand(STARTING_STOPPING_ADDRESS, (dohyoAddress<<1)|1);
-		}
-		else if(v == stopButton)
-		{
-			irSender.SendCommand(STARTING_STOPPING_ADDRESS, (dohyoAddress<<1)|0);
-		}
+			irSender.SendCommand(STARTING_STOPPING_ADDRESS, (addressValue<<1)|1);
 	}
+	
+	private Handler repeatHandler;
+
+	@Override
+	public boolean onTouch(View v, MotionEvent event)
+	{
+		if(v == stopButton)
+		{
+			switch(event.getAction())
+			{
+				case MotionEvent.ACTION_DOWN:
+					if (repeatHandler != null)
+						return true;
+					
+					repeatHandler = new Handler();
+					repeatHandler.postDelayed(sendStop, 0);
+					break;
+				case MotionEvent.ACTION_UP:
+					if (repeatHandler == null)
+						return true;
+					
+					repeatHandler.removeCallbacks(sendStop);
+					repeatHandler = null;
+					break;
+			}
+		}
+
+		return false;
+	}
+	
+	Runnable sendStop = new Runnable()
+	{
+        @Override public void run()
+        {
+        	irSender.SendCommand(STARTING_STOPPING_ADDRESS, addressValue<<1);
+            repeatHandler.postDelayed(this, 100);
+        }
+    };
+		
 	
 	@Override
     public void onBackPressed()
@@ -156,10 +188,10 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	{
 		try
 		{
-			int addressValue = Integer.parseInt(address.getText().toString());
+			int changedAddressValue = Integer.parseInt(address.getText().toString());
 			SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
 
-			if(addressValue > 31)
+			if(changedAddressValue > 31)
 			{
 				address.setText(Integer.toString(sharedPref.getInt(getString(R.string.address_preference), 0)));
 				address.setSelection(address.getText().length());
@@ -167,8 +199,9 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 			else
 			{		
 				SharedPreferences.Editor editor = sharedPref.edit();
-				editor.putInt(getString(R.string.address_preference), addressValue);
+				editor.putInt(getString(R.string.address_preference), changedAddressValue);
 				editor.commit();
+				addressValue = changedAddressValue;
 			}
 		}
 		catch(NumberFormatException nfe) { }
@@ -190,5 +223,5 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	@Override
 	public void beforeTextChanged(CharSequence prev, int arg1, int arg2, int arg3) { }
 	@Override
-	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) { } 
+	public void onTextChanged(CharSequence arg0, int arg1, int arg2, int arg3) { }
 }
