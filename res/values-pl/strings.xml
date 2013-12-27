@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SumoRemote</string>
+    <string name="app_name">Sumo Remote</string>
     <string name="action_about">O programie</string>
+    <string name="action_preferences">Ustawienia</string>
     <string name="address">Adres (0&#8211;31)</string>
     <string name="zero">0</string>
     <string name="program_button">PROGRAMUJ</string>
@@ -19,5 +20,9 @@
     <string name="logo_description">Logo Magnat Cyber Forge Team</string>
     
     <string name="address_preference">address</string>
+    
+    <string name="appearance">Wygląd</string>
+    <string name="use_dark_theme">Używaj ciemnego motywu</string>
+    <string name="reduces_energy_usage">Zmniejsza zużycie energii na AMOLEDach</string>    
 
 </resources>

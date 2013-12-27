@@ -4,12 +4,14 @@ import eu.mcft.sumoremote.R;
 import eu.mcft.sumoremote.RC5Sender;
 import android.os.Bundle;
 import android.os.Handler;
+import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.content.res.Resources.Theme;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -38,10 +40,19 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	
 	private final static int PROGRAMMING_ADDRESS  = 0x0B;
 	private final static int STARTING_STOPPING_ADDRESS = 0x07;
+	
+	SharedPreferences sharedPref;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
+		sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
+
+		if(sharedPref.getBoolean("theme", false) == true)
+			setTheme(android.R.style.Theme_Holo);
+		else
+			setTheme(android.R.style.Theme_Holo_Light);
+		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_main);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
@@ -85,7 +96,6 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		
 		address.addTextChangedListener(this);
 		
-		SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
 		address.setText(Integer.toString(addressValue = sharedPref.getInt(getString(R.string.address_preference), 0)));
 	}
 
@@ -100,14 +110,40 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item)
 	{
+		Intent intent;
+		
 		switch (item.getItemId())
 		{
 			case R.id.action_about:
-				Intent intent = new Intent(this, AboutActivity.class);
+				intent = new Intent(this, AboutActivity.class);
 				startActivity(intent);
+				return true;
+			case R.id.action_preferences:
+				intent = new Intent(MainActivity.this, SetPreferenceActivity.class);
+				startActivityForResult(intent, 0);
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);
+		}
+	}
+	
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	{
+		super.onActivityResult(requestCode, resultCode, data);
+		
+		if(requestCode == 0)
+		{
+			if(sharedPref.getBoolean("theme", false) == true)
+				setTheme(android.R.style.Theme_Holo);
+			else
+				setTheme(android.R.style.Theme_Holo_Light);
+
+			finish();
+		    Intent intent = new Intent(this, MainActivity.class);
+		    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP); 
+		    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+		    startActivity(intent);
 		}
 	}
 	
@@ -189,7 +225,6 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		try
 		{
 			int changedAddressValue = Integer.parseInt(address.getText().toString());
-			SharedPreferences sharedPref = getPreferences(Context.MODE_PRIVATE);
 
 			if(changedAddressValue > 31)
 			{

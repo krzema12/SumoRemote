@@ -25,6 +25,9 @@
         <activity
             android:name="eu.mcft.sumoremote.AboutActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name="eu.mcft.sumoremote.SetPreferenceActivity"
+            android:screenOrientation="portrait" />
     </application>
 
 </manifest>
