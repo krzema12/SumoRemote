@@ -41,15 +41,31 @@
 	        android:textSize="30sp" />
 	    
     </RelativeLayout>
-
-    <Button
-        android:id="@+id/programButton"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:text="@string/program_button"
-        android:textSize="42sp" />
     
+   <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dip"
+        android:layout_weight="2"
+        android:orientation="horizontal" >
+	    
+        <Button
+	        android:id="@+id/programButton"
+	        android:layout_width="0dip"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:text="@string/program_button"
+	        android:textSize="22sp" />
+
+	    <Button
+	        android:id="@+id/tacticsButton"
+	        android:layout_width="0dip"
+	        android:layout_height="match_parent"
+	        android:layout_weight="1"
+	        android:text="@string/tactics_button"
+	        android:textSize="22sp" />
+    
+    </LinearLayout>
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="0dip"

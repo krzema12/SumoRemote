@@ -9,6 +9,7 @@
     <string name="program_button">PROGRAM</string>
     <string name="start_button">START</string>
     <string name="stop_button">STOP</string>
+    <string name="tactics_button">TACTICS</string>
     <string name="double_back_toast">Press BACK again to exit</string>
     <string name="ir_not_detected_title">IR emitter not detected</string>
     <string name="ir_not_detected_full">It seems that your device is not equipped with IR emitter.</string>

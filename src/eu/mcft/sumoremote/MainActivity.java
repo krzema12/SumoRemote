@@ -30,6 +30,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	Button programButton;
 	Button startButton;
 	Button stopButton;
+	Button tacticsButton;
 	
 	EditText address;
 	
@@ -40,6 +41,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	
 	private final static int PROGRAMMING_ADDRESS  = 0x0B;
 	private final static int STARTING_STOPPING_ADDRESS = 0x07;
+	private final static int TACTICS_ADDRESS = 0x0D;
 	
 	SharedPreferences sharedPref;
 
@@ -60,6 +62,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		programButton = (Button)findViewById(R.id.programButton);
 		startButton = (Button)findViewById(R.id.startButton);
 		stopButton = (Button)findViewById(R.id.stopButton);
+		tacticsButton = (Button)findViewById(R.id.tacticsButton);
 		
 		address = (EditText)findViewById(R.id.address);
 		
@@ -93,6 +96,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		programButton.setOnClickListener(this);
 		startButton.setOnClickListener(this);
 		stopButton.setOnTouchListener(this);	// "onTouch" to handle long pressing
+		tacticsButton.setOnClickListener(this);
 		
 		address.addTextChangedListener(this);
 		
@@ -157,6 +161,8 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 			irSender.SendCommand(PROGRAMMING_ADDRESS, addressValue<<1);
 		else if(v == startButton)
 			irSender.SendCommand(STARTING_STOPPING_ADDRESS, (addressValue<<1)|1);
+		else if(v == tacticsButton)
+			irSender.SendCommand(TACTICS_ADDRESS, addressValue);
 	}
 	
 	private Handler repeatHandler;
