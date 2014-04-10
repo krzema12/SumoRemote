@@ -1,17 +1,17 @@
 package eu.mcft.sumoremote;
 
+import java.util.Locale;
+
 import eu.mcft.sumoremote.R;
-import eu.mcft.sumoremote.RC5Sender;
+import eu.mcft.sumoremote.SamsungRC5Sender;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
 import android.app.Activity;
 import android.app.AlertDialog;
-import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.content.res.Resources.Theme;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
@@ -33,7 +33,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	
 	EditText address;
 	
-	RC5Sender irSender;
+	IRSender irSender;
 	
 	boolean doubleBackToExitPressedOnce = false;
 	int addressValue = 0;
@@ -65,7 +65,12 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		
 		try
 		{
-			irSender = new RC5Sender(this.getSystemService("irda"), 38028);
+			String manufacturer = android.os.Build.MANUFACTURER.toLowerCase(Locale.ENGLISH);
+			
+			if (manufacturer.contains("samsung"))
+				irSender = new SamsungRC5Sender(this.getSystemService("irda"));
+			else if (manufacturer.contains("htc"))
+				irSender = new HTCRC5Sender(this);
 		}
 		catch(Exception e)
 		{

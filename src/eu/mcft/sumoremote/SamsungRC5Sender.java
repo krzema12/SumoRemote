@@ -2,11 +2,11 @@ package eu.mcft.sumoremote;
 
 import java.lang.reflect.Method;
 
-public class RC5Sender
+public class SamsungRC5Sender implements IRSender
 {
 	Object irdaService;
 	Method irWrite;
-	int frequency;
+	static final int FREQUENCY = 38028;
 	
 	boolean currentState;
 	boolean firstBit;
@@ -14,10 +14,9 @@ public class RC5Sender
 	
 	private static final int CYCLES_IN_BURST = 32;
 	
-	public RC5Sender(Object irdaService, int frequency)
+	public SamsungRC5Sender(Object irdaService)
 	{
 		this.irdaService = irdaService;
-		this.frequency = frequency;
 		
 		Class<? extends Object> c = irdaService.getClass();
 		Class<?> p[] = { String.class };
@@ -42,7 +41,7 @@ public class RC5Sender
 		rc5Frame = new StringBuilder();
 		
 		// frequency in Hz
-		rc5Frame.append(Integer.toString(frequency) + ",");
+		rc5Frame.append(Integer.toString(FREQUENCY) + ",");
 		
 		currentState = true;
 		
