@@ -6,6 +6,7 @@ import android.content.Context;
 import android.os.Handler;
 import android.os.Looper;
 import android.os.Message;
+import android.widget.Toast;
 
 import com.htc.circontrol.CIRControl;
 import com.htc.htcircontrol.HtcIrData;
@@ -23,7 +24,15 @@ public class HTCRC5Sender implements IRSender
 	
 	public HTCRC5Sender(Context context)
 	{
-		htcIrControl = new CIRControl(context, null);
+		try
+		{
+			htcIrControl = new CIRControl(context, null);
+			htcIrControl.start();
+		}
+		catch (NoClassDefFoundError ncde)
+		{
+			Toast.makeText(context, "No HTC device", Toast.LENGTH_SHORT).show();
+		}
 	}
 	
 	Handler mHandler = new Handler(Looper.getMainLooper())
@@ -83,7 +92,7 @@ public class HTCRC5Sender implements IRSender
 		try
 		{
 			HtcIrData ird = new HtcIrData(1, FREQUENCY, frameArray);
-			htcIrControl.transmitIRCmd(ird, false);
+			htcIrControl.transmitIRCmd(ird, true);
 		}
 		catch (Exception e)
 		{

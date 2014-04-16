@@ -67,9 +67,9 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		{
 			String manufacturer = android.os.Build.MANUFACTURER.toLowerCase(Locale.ENGLISH);
 			
-			if (manufacturer.contains("samsung"))
+			/*if (manufacturer.contains("samsung"))
 				irSender = new SamsungRC5Sender(this.getSystemService("irda"));
-			else if (manufacturer.contains("htc"))
+			else if (manufacturer.contains("htc"))*/
 				irSender = new HTCRC5Sender(this);
 		}
 		catch(Exception e)
