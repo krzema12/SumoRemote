@@ -34,25 +34,6 @@ public class HTCRC5Sender implements IRSender
 			Toast.makeText(context, "No HTC device", Toast.LENGTH_SHORT).show();
 		}
 	}
-	
-	Handler mHandler = new Handler(Looper.getMainLooper())
-	{ 
-		@Override
-		public void handleMessage(Message msg)
-		{			
-			switch (msg.what)
-			{
-			case CIRControl.MSG_RET_LEARN_IR:
-				break;
-			case CIRControl.MSG_RET_TRANSMIT_IR:
-				break;
-			case CIRControl.MSG_RET_CANCEL:
-				break;				
-			default:
-				super.handleMessage(msg);
-			}
-	    }
-	};
 
 	@Override
 	public void SendCommand(int address, int command)
@@ -128,7 +109,7 @@ public class HTCRC5Sender implements IRSender
 	
 	private void flush()
 	{
-		if(currentState == true)
+		if(currentState == false)
 			frame.add(CYCLES_IN_BURST);
 	}
 
