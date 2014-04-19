@@ -2,7 +2,9 @@ package eu.mcft.sumoremote;
 
 import java.lang.reflect.Method;
 
-public class SamsungRC5Sender implements IRSender
+import android.content.Context;
+
+public class SamsungRC5Sender extends IRSender
 {
 	Object irdaService;
 	Method irWrite;
@@ -14,9 +16,9 @@ public class SamsungRC5Sender implements IRSender
 	
 	private static final int CYCLES_IN_BURST = 32;
 	
-	public SamsungRC5Sender(Object irdaService)
+	public SamsungRC5Sender(Context context) throws NoSuchMethodException
 	{
-		this.irdaService = irdaService;
+		irdaService = context.getSystemService("irda");
 		
 		Class<? extends Object> c = irdaService.getClass();
 		Class<?> p[] = { String.class };

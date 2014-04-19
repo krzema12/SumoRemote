@@ -11,12 +11,12 @@
     <string name="stop_button">STOP</string>
     <string name="double_back_toast">Press BACK again to exit</string>
     <string name="ir_not_detected_title">IR emitter not detected</string>
-    <string name="ir_not_detected_full">It seems that your device is not equipped with IR emitter.</string>
-    <string name="ir_not_detected_button">I see&#8230;</string>
+    <string name="ir_not_detected_full">Your device is not equipped with an IR emitter or Sumo Remote doesn\'t know how to use it yet.</string>
+    <string name="ir_not_detected_button">I see, that\'s sad&#8230;</string>
 
     <string name="author">by Piotr Krzemiński (mcft.eu)</string>
     <string name="version_dummy">v</string>
-    <string name="app_description">This app acts as a remote for sumo robots, compatible with these modules: http://www.startmodule.com/main-description/.\n\nYour device must be equipped with IR emitter to make the app work!</string>
+    <string name="app_description">This app acts as a remote for sumo robots, compatible with these modules: http://www.startmodule.com/main-description/.\n\nYour device must be equipped with an IR emitter to make the app work!</string>
     <string name="logo_description">Magnat Cyber Forge Team logo</string>
     
     <string name="address_preference">address</string>

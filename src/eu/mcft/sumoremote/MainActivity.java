@@ -1,9 +1,6 @@
 package eu.mcft.sumoremote;
 
-import java.util.Locale;
-
 import eu.mcft.sumoremote.R;
-import eu.mcft.sumoremote.SamsungRC5Sender;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
@@ -60,19 +57,11 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		programButton = (Button)findViewById(R.id.programButton);
 		startButton = (Button)findViewById(R.id.startButton);
 		stopButton = (Button)findViewById(R.id.stopButton);
-		
 		address = (EditText)findViewById(R.id.address);
 		
-		try
-		{
-			String manufacturer = android.os.Build.MANUFACTURER.toLowerCase(Locale.ENGLISH);
-			
-			/*if (manufacturer.contains("samsung"))
-				irSender = new SamsungRC5Sender(this.getSystemService("irda"));
-			else if (manufacturer.contains("htc"))*/
-				irSender = new HTCRC5Sender(this);
-		}
-		catch(Exception e)
+		irSender = IRSender.create(this);
+		
+		if (irSender == null)
 		{
 			programButton.setEnabled(false);
 			startButton.setEnabled(false);
@@ -94,6 +83,8 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 			AlertDialog alert = builder.create();
 			alert.show();
 		}
+		else
+		{
 		
 		programButton.setOnClickListener(this);
 		startButton.setOnClickListener(this);
@@ -102,6 +93,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		address.addTextChangedListener(this);
 		
 		address.setText(Integer.toString(addressValue = sharedPref.getInt(getString(R.string.address_preference), 0)));
+		}
 	}
 
 	@Override

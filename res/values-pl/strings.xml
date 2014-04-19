@@ -11,8 +11,8 @@
     <string name="stop_button">STOP</string>
     <string name="double_back_toast">Naciśnij jeszcze raz WSTECZ aby wyjść</string>
     <string name="ir_not_detected_title">Nie wykryto nadajnika IR</string>
-    <string name="ir_not_detected_full">Wygląda na to, że Twoje urządzenie nie jest wyposażone w nadajnik podczerwieni.</string>
-    <string name="ir_not_detected_button">Ok&#8230;</string>
+    <string name="ir_not_detected_full">Twoje urządzenie nie jest wyposażone w nadajnik podczerwieni lub Sumo Remote nie potrafi jeszcze z niego skorzystać.</string>
+    <string name="ir_not_detected_button">Rozumiem, szkoda&#8230;</string>
     
     <string name="author">Autor: Piotr Krzemiński (mcft.eu)</string>
     <string name="version_dummy">v</string>
