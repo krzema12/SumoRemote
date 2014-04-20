@@ -16,7 +16,7 @@
 
     <string name="author">by Piotr Krzemiński (mcft.eu)</string>
     <string name="version_dummy">v</string>
-    <string name="app_description">This app acts as a remote for sumo robots, compatible with these modules: http://www.startmodule.com/main-description/.\n\nYour device must be equipped with an IR emitter to make the app work!</string>
+    <string name="app_description">This app acts as a remote for sumo robots, compatible with these modules: http://www.startmodule.com/main-description/.</string>
     <string name="logo_description">Magnat Cyber Forge Team logo</string>
     
     <string name="address_preference">address</string>

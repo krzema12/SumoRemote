@@ -16,7 +16,7 @@
     
     <string name="author">Autor: Piotr Krzemiński (mcft.eu)</string>
     <string name="version_dummy">v</string>
-    <string name="app_description">Aplikacja działa jako pilot do robotów sumo wyposażonych w takie moduły: http://www.konar.pwr.wroc.pl/sites/default/files/uploaded/moduly_opis.pdf\n\nAby aplikacja mogła działać, Twoje urządzenie musi być wyposażone w nadajnik podczerwieni!</string>
+    <string name="app_description">Aplikacja działa jako pilot do robotów sumo wyposażonych w takie moduły: http://www.konar.pwr.wroc.pl/sites/default/files/uploaded/moduly_opis.pdf.</string>
     <string name="logo_description">Logo Magnat Cyber Forge Team</string>
     
     <string name="address_preference">address</string>

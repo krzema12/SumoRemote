@@ -174,7 +174,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		else if(v == startButton)
 		{
 			if (homeMode)
-				irSender.SendCommand(HOME_MODE_ADDRESS, 2);
+				irSender.SendCommand(HOME_MODE_ADDRESS, 1);
 			else
 				irSender.SendCommand(STARTING_STOPPING_ADDRESS, (addressValue<<1)|1);
 		}
@@ -214,7 +214,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
         @Override public void run()
         {
 			if (homeMode)
-				irSender.SendCommand(HOME_MODE_ADDRESS, 1);
+				irSender.SendCommand(HOME_MODE_ADDRESS, 2);
 			else
 				irSender.SendCommand(STARTING_STOPPING_ADDRESS, addressValue<<1);
 			
