@@ -18,6 +18,17 @@
     <string name="version_dummy">v</string>
     <string name="app_description">This app acts as a remote for sumo robots, compatible with these modules: http://www.startmodule.com/main-description/.</string>
     <string name="logo_description">Magnat Cyber Forge Team logo</string>
+    <string name="people_who_helped_desc">People who helped me during the development of Sumo Remote:</string>
+    
+	<string-array name="people_who_helped">
+	    <item>Calle Arenander (?)</item>
+	    <item>Claudiu Avram (?)</item>
+	    <item>Jarosław Korus (?)</item>
+	    <item>Klaipeda University Robotics Club (?)</item>
+		<item>Mikołaj Belowski</item>
+		<item>Michał Kurpis (?)</item>
+		<item>Petter Forsberg (?)</item>
+	</string-array>
     
     <string name="address_preference">address</string>
     

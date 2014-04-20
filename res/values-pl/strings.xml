@@ -18,6 +18,7 @@
     <string name="version_dummy">v</string>
     <string name="app_description">Aplikacja działa jako pilot do robotów sumo wyposażonych w takie moduły: http://www.konar.pwr.wroc.pl/sites/default/files/uploaded/moduly_opis.pdf.</string>
     <string name="logo_description">Logo Magnat Cyber Forge Team</string>
+    <string name="people_who_helped_desc">Osoby, które pomogły mi przy tworzeniu Sumo Remote:</string>
     
     <string name="address_preference">address</string>
     

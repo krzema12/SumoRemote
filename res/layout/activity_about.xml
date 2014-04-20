@@ -12,9 +12,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
+        android:layout_below="@+id/peopleWhoHelped"
         android:layout_centerHorizontal="true"
+        android:layout_marginTop="20dp"
+        android:alpha="0.1"
         android:contentDescription="@string/logo_description"
-        android:scaleType="fitEnd"
+        android:scaleType="fitCenter"
         android:src="@drawable/mcft" />
 
     <TextView
@@ -55,5 +58,26 @@
         android:layout_marginTop="35dp"
         android:text="@string/app_description"
         android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/peopleWhoHelped"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/appDescription"
+        android:layout_below="@+id/appDescription"
+        android:layout_marginTop="16dp"
+        android:text="@string/people_who_helped_desc"
+        android:textAppearance="?android:attr/textAppearanceMedium" />
+
+    <ListView
+        android:id="@+id/listView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/imageView1"
+        android:layout_alignTop="@+id/imageView1"
+        android:entries="@array/people_who_helped"
+        android:listSelector="@android:color/transparent" >
+
+    </ListView>
  
 </RelativeLayout>
