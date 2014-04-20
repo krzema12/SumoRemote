@@ -2,7 +2,6 @@ package eu.mcft.sumoremote;
 
 import android.content.Context;
 import android.os.Build;
-import android.widget.Toast;
 
 public abstract class IRSender
 {
@@ -19,7 +18,6 @@ public abstract class IRSender
 			try
 			{
 				face = new HTCRC5Sender(context);
-				Toast.makeText(context, "Using HTC's API", Toast.LENGTH_SHORT).show();
 			}
 			catch (Exception ex){}
 		}
@@ -30,7 +28,6 @@ public abstract class IRSender
 			try
 			{
 				face = new SamsungRC5Sender(context);
-				Toast.makeText(context, "Using Samsung's API", Toast.LENGTH_SHORT).show();
 			}
 			catch (Exception ex){}
 		}
@@ -43,7 +40,6 @@ public abstract class IRSender
 				try
 				{
 					face = new KitKatRC5Sender(context);
-					Toast.makeText(context, "Using KitKat's API", Toast.LENGTH_SHORT).show();
 				}
 				catch (Exception ex){}
 			}

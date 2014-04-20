@@ -1,6 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
     <PreferenceCategory
+        android:title="@string/general">
+        
+        <CheckBoxPreference android:title="@string/home_mode"
+            android:key="home_mode"
+            android:summary="@string/use_home_mode"/>
+        
+    </PreferenceCategory>
+    <PreferenceCategory
         android:title="@string/appearance">
         
         <CheckBoxPreference android:title="@string/use_dark_theme"

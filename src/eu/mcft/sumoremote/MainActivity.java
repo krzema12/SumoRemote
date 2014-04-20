@@ -34,7 +34,9 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	
 	boolean doubleBackToExitPressedOnce = false;
 	int addressValue = 0;
+	boolean homeMode = false;
 	
+	private final static int HOME_MODE_ADDRESS  = 0x00;
 	private final static int PROGRAMMING_ADDRESS  = 0x0B;
 	private final static int STARTING_STOPPING_ADDRESS = 0x07;
 	
@@ -45,28 +47,43 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	{
 		sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-		if(sharedPref.getBoolean("theme", false) == true)
+		if (sharedPref.getBoolean("theme", false) == true)
 			setTheme(android.R.style.Theme_Holo);
 		else
 			setTheme(android.R.style.Theme_Holo_Light);
 		
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.activity_main);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		
-		programButton = (Button)findViewById(R.id.programButton);
+		homeMode = sharedPref.getBoolean("home_mode", false);
+		
+		if (homeMode == false)
+		{
+			setContentView(R.layout.activity_main);
+			
+			programButton = (Button)findViewById(R.id.programButton);
+			address = (EditText)findViewById(R.id.address);
+		}
+		else
+		{
+			setContentView(R.layout.activity_main_home);
+		}
+		
 		startButton = (Button)findViewById(R.id.startButton);
 		stopButton = (Button)findViewById(R.id.stopButton);
-		address = (EditText)findViewById(R.id.address);
 		
 		irSender = IRSender.create(this);
 		
 		if (irSender == null)
 		{
-			programButton.setEnabled(false);
 			startButton.setEnabled(false);
 			stopButton.setEnabled(false);
-			address.setEnabled(false);
+			
+			if (homeMode == false)
+			{
+				programButton.setEnabled(false);
+				address.setEnabled(false);
+			}
 			
 			AlertDialog.Builder builder = new AlertDialog.Builder(this);
 			builder.setTitle(R.string.ir_not_detected_title)
@@ -85,14 +102,16 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		}
 		else
 		{
-		
-		programButton.setOnClickListener(this);
-		startButton.setOnClickListener(this);
-		stopButton.setOnTouchListener(this);	// "onTouch" to handle long pressing
-		
-		address.addTextChangedListener(this);
-		
-		address.setText(Integer.toString(addressValue = sharedPref.getInt(getString(R.string.address_preference), 0)));
+			startButton.setOnClickListener(this);
+			stopButton.setOnTouchListener(this);	// "onTouch" to handle long pressing
+			
+			if (homeMode == false)
+			{
+				programButton.setOnClickListener(this);
+				address.addTextChangedListener(this);
+				
+				address.setText(Integer.toString(addressValue = sharedPref.getInt(getString(R.string.address_preference), 0)));
+			}
 		}
 	}
 
@@ -153,7 +172,12 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		if(v == programButton)
 			irSender.SendCommand(PROGRAMMING_ADDRESS, addressValue<<1);
 		else if(v == startButton)
-			irSender.SendCommand(STARTING_STOPPING_ADDRESS, (addressValue<<1)|1);
+		{
+			if (homeMode)
+				irSender.SendCommand(HOME_MODE_ADDRESS, 2);
+			else
+				irSender.SendCommand(STARTING_STOPPING_ADDRESS, (addressValue<<1)|1);
+		}
 	}
 	
 	private Handler repeatHandler;
@@ -189,7 +213,11 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	{
         @Override public void run()
         {
-        	irSender.SendCommand(STARTING_STOPPING_ADDRESS, addressValue<<1);
+			if (homeMode)
+				irSender.SendCommand(HOME_MODE_ADDRESS, 1);
+			else
+				irSender.SendCommand(STARTING_STOPPING_ADDRESS, addressValue<<1);
+			
             repeatHandler.postDelayed(this, 100);
         }
     };

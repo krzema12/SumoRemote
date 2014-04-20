@@ -21,6 +21,10 @@
     
     <string name="address_preference">address</string>
     
+    <string name="general">Ogólne</string>
+    <string name="home_mode">Tryb domowy (home mode)</string>
+    <string name="use_home_mode">Aplikacja działa jak pilot od telewizora</string>
+    
     <string name="appearance">Wygląd</string>
     <string name="use_dark_theme">Używaj ciemnego motywu</string>
     <string name="reduces_energy_usage">Zmniejsza zużycie energii na AMOLEDach</string>    

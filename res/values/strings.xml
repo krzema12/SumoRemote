@@ -21,6 +21,10 @@
     
     <string name="address_preference">address</string>
     
+    <string name="general">General</string>
+    <string name="home_mode">Home mode</string>
+    <string name="use_home_mode">The app works like a TV remote</string>
+    
     <string name="appearance">Appearance</string>
     <string name="use_dark_theme">Use dark theme</string>
     <string name="reduces_energy_usage">Reduces energy usage on AMOLEDs</string>
