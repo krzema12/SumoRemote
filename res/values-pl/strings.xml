@@ -1,11 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Sumo Remote</string>
     <string name="action_about">O programie</string>
     <string name="action_preferences">Ustawienia</string>
     <string name="address">Adres (0&#8211;31)</string>
-    <string name="zero">0</string>
     <string name="program_button">PROGRAMUJ</string>
     <string name="start_button">START</string>
     <string name="stop_button">STOP</string>
@@ -15,13 +13,10 @@
     <string name="ir_not_detected_button">Rozumiem, szkoda&#8230;</string>
     
     <string name="author">Autor: Piotr Krzemiński (mcft.eu)</string>
-    <string name="version_dummy">v</string>
     <string name="app_description">Aplikacja działa jako pilot do robotów sumo wyposażonych w takie moduły: http://www.konar.pwr.wroc.pl/sites/default/files/uploaded/moduly_opis.pdf.</string>
     <string name="logo_description">Logo Magnat Cyber Forge Team</string>
-    <string name="people_who_helped_desc">Osoby, które pomogły mi przy tworzeniu Sumo Remote:</string>
-    
-    <string name="address_preference">address</string>
-    
+    <string name="people_who_helped_desc">Wielkie dzięki wszystkim, którzy pomogli mi przy tworzeniu Sumo Remote:</string>
+
     <string name="general">Ogólne</string>
     <string name="home_mode">Tryb domowy (home mode)</string>
     <string name="use_home_mode">Aplikacja działa jak pilot od telewizora</string>

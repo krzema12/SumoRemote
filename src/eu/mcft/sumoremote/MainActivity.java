@@ -253,7 +253,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 
 			if(changedAddressValue > 31)
 			{
-				address.setText(Integer.toString(sharedPref.getInt(getString(R.string.address_preference), 0)));
+				address.setText(Integer.toString(addressValue));
 				address.setSelection(address.getText().length());
 			}
 			else

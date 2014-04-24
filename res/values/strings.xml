@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">Sumo Remote</string>
+    <string name="app_name" translatable="false">Sumo Remote</string>
     <string name="action_about">About</string>
     <string name="action_preferences">Preferences</string>
     <string name="address">Address (0&#8211;31)</string>
-    <string name="zero">0</string>
+    <string name="zero" translatable="false">0</string>
     <string name="program_button">PROGRAM</string>
     <string name="start_button">START</string>
     <string name="stop_button">STOP</string>
@@ -15,22 +15,22 @@
     <string name="ir_not_detected_button">I see, that\'s sad&#8230;</string>
 
     <string name="author">by Piotr Krzemiński (mcft.eu)</string>
-    <string name="version_dummy">v</string>
+    <string name="version_dummy" translatable="false">v</string>
     <string name="app_description">This app acts as a remote for sumo robots, compatible with these modules: http://www.startmodule.com/main-description/.</string>
     <string name="logo_description">Magnat Cyber Forge Team logo</string>
-    <string name="people_who_helped_desc">People who helped me during the development of Sumo Remote:</string>
+    <string name="people_who_helped_desc">A big thanks for any help during the development of Sumo Remote go to:</string>
     
-	<string-array name="people_who_helped">
-	    <item>Calle Arenander (?)</item>
-	    <item>Claudiu Avram (?)</item>
-	    <item>Jarosław Korus (?)</item>
-	    <item>Klaipeda University Robotics Club (?)</item>
+	<string-array name="people_who_helped" translatable="false">
+	    <item>Calle Arenander</item>
+	    <item>Claudiu Avram</item>
+	    <item>Jarosław Korus</item>
+	    <item>Klaipeda University Robotics Club</item>
 		<item>Mikołaj Belowski</item>
-		<item>Michał Kurpis (?)</item>
-		<item>Petter Forsberg (?)</item>
+		<item>Michał Kurpis</item>
+		<item>Petter Forsberg</item>
 	</string-array>
     
-    <string name="address_preference">address</string>
+    <string name="address_preference" translatable="false">address</string>
     
     <string name="general">General</string>
     <string name="home_mode">Home mode</string>
