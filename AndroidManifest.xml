@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eu.mcft.sumoremote"
-    android:versionCode="3"
-    android:versionName="1.1.1" >
+    android:versionCode="4"
+    android:versionName="1.2" >
 
     <uses-sdk
         android:minSdkVersion="11"
-        android:targetSdkVersion="18" />
+        android:targetSdkVersion="19" />
+    
+    <uses-permission android:name="android.permission.TRANSMIT_IR" />
+    <uses-feature android:name="android.hardware.consumerir"/>
 
     <application
         android:allowBackup="true"
@@ -24,6 +27,9 @@
         </activity>
         <activity
             android:name="eu.mcft.sumoremote.AboutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="eu.mcft.sumoremote.SetPreferenceActivity"
             android:screenOrientation="portrait" />
     </application>
 

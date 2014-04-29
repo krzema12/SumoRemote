@@ -1,23 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">SumoRemote</string>
     <string name="action_about">O programie</string>
+    <string name="action_preferences">Ustawienia</string>
     <string name="address">Adres (0&#8211;31)</string>
-    <string name="zero">0</string>
     <string name="program_button">PROGRAMUJ</string>
     <string name="start_button">START</string>
     <string name="stop_button">STOP</string>
     <string name="double_back_toast">Naciśnij jeszcze raz WSTECZ aby wyjść</string>
     <string name="ir_not_detected_title">Nie wykryto nadajnika IR</string>
-    <string name="ir_not_detected_full">Wygląda na to, że Twoje urządzenie nie jest wyposażone w nadajnik podczerwieni.</string>
-    <string name="ir_not_detected_button">Ok&#8230;</string>
+    <string name="ir_not_detected_full">Twoje urządzenie nie jest wyposażone w nadajnik podczerwieni lub Sumo Remote nie potrafi jeszcze z niego skorzystać.</string>
+    <string name="ir_not_detected_button">Rozumiem, szkoda&#8230;</string>
     
     <string name="author">Autor: Piotr Krzemiński (mcft.eu)</string>
-    <string name="version_dummy">v</string>
-    <string name="app_description">Aplikacja działa jako pilot do robotów sumo wyposażonych w takie moduły: http://www.konar.pwr.wroc.pl/sites/default/files/uploaded/moduly_opis.pdf\n\nAby aplikacja mogła działać, Twoje urządzenie musi być wyposażone w nadajnik podczerwieni!</string>
+    <string name="app_description">Aplikacja działa jako pilot do robotów sumo wyposażonych w takie moduły: http://www.konar.pwr.wroc.pl/sites/default/files/uploaded/moduly_opis.pdf.</string>
     <string name="logo_description">Logo Magnat Cyber Forge Team</string>
+    <string name="people_who_helped_desc">Wielkie dzięki wszystkim, którzy pomogli mi przy tworzeniu Sumo Remote:</string>
+
+    <string name="general">Ogólne</string>
+    <string name="home_mode">Tryb domowy (home mode)</string>
+    <string name="use_home_mode">Aplikacja działa jak pilot od telewizora</string>
     
-    <string name="address_preference">address</string>
+    <string name="appearance">Wygląd</string>
+    <string name="use_dark_theme">Używaj ciemnego motywu</string>
+    <string name="reduces_energy_usage">Zmniejsza zużycie energii na AMOLEDach</string>    
 
 </resources>
