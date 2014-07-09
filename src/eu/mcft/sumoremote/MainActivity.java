@@ -138,6 +138,10 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 				intent = new Intent(MainActivity.this, SetPreferenceActivity.class);
 				startActivityForResult(intent, 0);
 				return true;
+			case R.id.action_custom_commands:
+				intent = new Intent(MainActivity.this, CustomCommandsActivity.class);
+				startActivityForResult(intent, 0);
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}

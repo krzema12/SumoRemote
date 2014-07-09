@@ -17,7 +17,7 @@ public class SetPreferenceActivity extends Activity
 		else
 			setTheme(android.R.style.Theme_Holo_Light);
 		 
-		 super.onCreate(savedInstanceState);
-		 getFragmentManager().beginTransaction().replace(android.R.id.content, new PrefsFragment()).commit();
+		super.onCreate(savedInstanceState);
+		getFragmentManager().beginTransaction().replace(android.R.id.content, new PrefsFragment()).commit();
 	 }
 }

@@ -3,7 +3,12 @@
 
     <string name="action_about">O programie</string>
     <string name="action_preferences">Ustawienia</string>
+    <string name="action_custom_commands">Własne komendy</string>
+    <string name="action_add_command">Dodaj komendę</string>
+    
     <string name="address">Adres (0&#8211;31)</string>
+    <string name="command">Komenda (0&#8211;63)</string>
+    <string name="name">Command (0&#8211;63)</string>
     <string name="program_button">PROGRAMUJ</string>
     <string name="start_button">START</string>
     <string name="stop_button">STOP</string>
@@ -23,6 +28,8 @@
     
     <string name="appearance">Wygląd</string>
     <string name="use_dark_theme">Używaj ciemnego motywu</string>
-    <string name="reduces_energy_usage">Zmniejsza zużycie energii na AMOLEDach</string>    
+    <string name="reduces_energy_usage">Zmniejsza zużycie energii na AMOLEDach</string>
+    
+    <string name="no_commands">Brak komend.\n\nMożesz dodać nowe komendy naciskając przycisk \'+\' w górnym prawym rogu.</string>
 
 </resources>

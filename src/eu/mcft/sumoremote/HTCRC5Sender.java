@@ -27,7 +27,7 @@ public class HTCRC5Sender extends IRSender
 		}
 		catch (NoClassDefFoundError ncde)
 		{
-			throw new Exception("No HTC Device");
+			new Exception("No HTC Device");
 		}
 	}
 
