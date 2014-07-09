@@ -33,11 +33,11 @@ public class CustomCommandsActivity extends Activity
 		noCommandsTextView = (TextView)findViewById(R.id.noCommandsTextView);
 		commandsListView = (ListView)findViewById(R.id.commandsListView);
 		
-		String[] values = new String[] { "Android", "iPhone", "WindowsMobile",
-		        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-		        "Linux", "OS/2", "iPhone", "WindowsMobile",
-		        "Blackberry", "WebOS", "Ubuntu", "Windows7", "Max OS X",
-		        "Linux", "OS/2" };
+		String[] values = new String[] {	"Fast straight#Address: 3  Command: 0",
+											"Wait and drive#Address: 3  Command: 1",
+											"Left 90deg and right arc#Address: 3  Command: 2",
+											"Right 90deg and left arc#Address: 3  Command: 4",
+											"Zig-zag#Address: 3  Command: 5"};
 		
 		CustomCommandsListAdapter adapter = new CustomCommandsListAdapter(this, values);
 		commandsListView.setAdapter(adapter);

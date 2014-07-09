@@ -26,7 +26,9 @@ public class CustomCommandsListAdapter extends ArrayAdapter<String>
 	    View rowView = inflater.inflate(R.layout.custom_commands_list_adapter, parent, false);
 
 	    TextView commandName = (TextView)rowView.findViewById(R.id.commandName);
-	    commandName.setText(values[position]);
+	    commandName.setText(values[position].split("#")[0]);
+	    TextView addressAndCommand = (TextView)rowView.findViewById(R.id.addressAndCommand);
+	    addressAndCommand.setText(values[position].split("#")[1]);
 	    
 	    return rowView;
 	}

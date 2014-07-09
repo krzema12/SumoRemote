@@ -19,7 +19,7 @@ public abstract class IRSender
 			{
 				face = new HTCRC5Sender(context);
 			}
-			catch (Exception ex){}
+			catch (Exception ex) { }
 		}
 
 		// Samsung
@@ -29,7 +29,7 @@ public abstract class IRSender
 			{
 				face = new SamsungRC5Sender(context);
 			}
-			catch (Exception ex){}
+			catch (Exception ex) { }
 		}
 
 		// universal (KitKat and newer)
@@ -41,7 +41,7 @@ public abstract class IRSender
 				{
 					face = new KitKatRC5Sender(context);
 				}
-				catch (Exception ex){}
+				catch (Exception ex) { }
 			}
 		}
 
