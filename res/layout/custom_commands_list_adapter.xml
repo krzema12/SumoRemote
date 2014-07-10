@@ -22,6 +22,7 @@
         android:layout_alignBottom="@+id/addressAndCommand"
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
+        android:focusable="false"
         android:text="Send" />
 
     <TextView

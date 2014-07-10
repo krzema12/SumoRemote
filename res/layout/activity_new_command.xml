@@ -39,7 +39,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/address"
         android:layout_centerHorizontal="true"
-        android:text="@string/command"
+        android:text="@string/command_range"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="30sp" />
 
@@ -49,7 +49,7 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/name"
         android:layout_centerHorizontal="true"
-        android:text="@string/address"
+        android:text="@string/address_range"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textSize="30sp" />
 

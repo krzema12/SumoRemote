@@ -6,9 +6,11 @@
     <string name="action_custom_commands">Własne komendy</string>
     <string name="action_add_command">Dodaj komendę</string>
     
-    <string name="address">Adres (0&#8211;31)</string>
-    <string name="command">Komenda (0&#8211;63)</string>
-    <string name="name">Command (0&#8211;63)</string>
+    <string name="address_range">Adres (0&#8211;31)</string>
+    <string name="command_range">Komenda (0&#8211;63)</string>
+    <string name="address">Adres</string>
+    <string name="command">Komenda</string>
+    <string name="name">Nazwa</string>
     <string name="program_button">PROGRAMUJ</string>
     <string name="start_button">START</string>
     <string name="stop_button">STOP</string>
@@ -31,5 +33,7 @@
     <string name="reduces_energy_usage">Zmniejsza zużycie energii na AMOLEDach</string>
     
     <string name="no_commands">Brak komend.\n\nMożesz dodać nowe komendy naciskając przycisk \'+\' w górnym prawym rogu.</string>
+    <string name="name_too_short">Nazwa nie może być pusta.</string>
+    <string name="command_default_name_prefix">Komenda</string>
 
 </resources>

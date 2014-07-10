@@ -7,8 +7,10 @@
     <string name="action_custom_commands">Custom commands</string>
     <string name="action_add_command">Add command</string>
     
-    <string name="address">Address (0&#8211;31)</string>
-    <string name="command">Command (0&#8211;63)</string>
+    <string name="address_range">Address (0&#8211;31)</string>
+    <string name="command_range">Command (0&#8211;63)</string>
+    <string name="address">Address</string>
+    <string name="command">Command</string>
     <string name="name">Name</string>
     <string name="zero" translatable="false">0</string>
     <string name="program_button">PROGRAM</string>
@@ -46,5 +48,7 @@
     <string name="reduces_energy_usage">Reduces energy usage on AMOLEDs</string>
     
     <string name="no_commands">No custom commands.\n\nYou can add new commands by tapping the \'+\' button in the top-right corner.</string>
+    <string name="name_too_short">Name cannot be empty</string>
+    <string name="command_default_name_prefix">Command</string>
 
 </resources>
