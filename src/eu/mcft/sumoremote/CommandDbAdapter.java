@@ -1,5 +1,8 @@
 package eu.mcft.sumoremote;
 
+import java.util.ArrayList;
+
+import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
@@ -83,14 +86,15 @@ public class CommandDbAdapter
 	
 	public boolean updateCommand(Command command)
 	{
-		return updateCommand(command.getName(), command.getAddress(), command.getCommand());
+		return updateCommand(command.getId(), command.getName(), command.getAddress(), command.getCommand());
 	}
 	
-	public boolean updateCommand(String name, int address, int command)
+	public boolean updateCommand(long id, String name, int address, int command)
 	{
-		String where = KEY_NAME + "=" + name;
+		String where = KEY_ID + "=" + id;
 		
 		ContentValues updateCommand = new ContentValues();
+		updateCommand.put(KEY_NAME, name);
 		updateCommand.put(KEY_ADDRESS, address);
 		updateCommand.put(KEY_COMMAND, command);
 		
@@ -103,7 +107,7 @@ public class CommandDbAdapter
 		return db.delete(DB_COMMANDS_TABLE, where, null) > 0;
 	}
 	
-	public Cursor getAllCommands()
+	private Cursor getAllCommands()
 	{
 		String[] columns = {KEY_ID, KEY_NAME, KEY_ADDRESS, KEY_COMMAND};
 		String orderBy = KEY_ADDRESS + ", " + KEY_COMMAND + ", " + KEY_NAME;
@@ -121,11 +125,40 @@ public class CommandDbAdapter
 		{
 			String name = cursor.getString(NAME_COLUMN);
 			int address = cursor.getInt(ADDRESS_COLUMN);
-			int command = cursor.getInt(ADDRESS_COLUMN);
+			int command = cursor.getInt(COMMAND_COLUMN);
 			thisCommand = new Command(id, name, address, command);
 		}
 		
 		return thisCommand;
+	}
+	
+	public ArrayList<Command> getAllCommands(Activity activity)
+	{
+		ArrayList<Command> commands = new ArrayList<Command>();
+		
+		Cursor commandCursor = getAllCommands();
+		
+		if (commandCursor != null)
+		{
+			activity.startManagingCursor(commandCursor);
+			commandCursor.moveToFirst();
+		}
+		
+		if (commandCursor != null && commandCursor.moveToFirst())
+		{
+			do
+			{
+				long id = commandCursor.getLong(CommandDbAdapter.ID_COLUMN);
+				String name = commandCursor.getString(CommandDbAdapter.NAME_COLUMN);
+				int address = commandCursor.getInt(CommandDbAdapter.ADDRESS_COLUMN);
+				int command = commandCursor.getInt(CommandDbAdapter.COMMAND_COLUMN);
+				
+				commands.add(new Command(id, name, address, command));
+			}
+			while (commandCursor.moveToNext());
+		}
+		
+		return commands;
 	}
 	
 	private static class DatabaseHelper extends SQLiteOpenHelper

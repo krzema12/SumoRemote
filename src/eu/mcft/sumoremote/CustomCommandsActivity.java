@@ -28,6 +28,10 @@ public class CustomCommandsActivity extends Activity
 	private Cursor commandCursor;
 	private ArrayList<Command> commands;
 	
+	private static final int SEND = 0;
+	private static final int EDIT = 1;
+	private static final int DELETE = 2;
+	
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
@@ -59,46 +63,47 @@ public class CustomCommandsActivity extends Activity
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)menuInfo;
 		menu.setHeaderTitle(commands.get(info.position).getName());
 		
-		menu.add(Menu.NONE, 0, 0, "Delete");
+		menu.add(Menu.NONE, SEND, SEND, this.getString(R.string.send));
+		menu.add(Menu.NONE, EDIT, EDIT, this.getString(R.string.edit));
+		menu.add(Menu.NONE, DELETE, DELETE, this.getString(R.string.delete));
 	}
 	
 	@Override
 	public boolean onContextItemSelected(MenuItem item)
 	{
 		AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo)item.getMenuInfo();
-		long commandID = commands.get(info.position).getId();
+		long commandID;
 		
-		dbAdapter.deleteCommand(commandID);
-		loadCommandsToListView();
-		
+		switch(item.getItemId())
+		{
+			case SEND:
+			break;
+			case EDIT:
+				commandID = commands.get(info.position).getId();
+				
+				Intent intent = new Intent(this, NewCommandActivity.class);
+				intent.putExtra("commandID", commandID);
+				startActivityForResult(intent, 0);
+				
+				loadCommandsToListView();
+			break;
+			case DELETE:
+				commandID = commands.get(info.position).getId();
+				dbAdapter.deleteCommand(commandID);
+				
+				loadCommandsToListView();
+			break;
+			
+			default:
+		}
+
 		return true;
 	}
 	
 	private void loadCommandsToListView()
 	{
-		commands = new ArrayList<Command>();
-		commandCursor = dbAdapter.getAllCommands();
-		
-		if (commandCursor != null)
-		{
-			startManagingCursor(commandCursor);
-			commandCursor.moveToFirst();
-		}
-		
-		if (commandCursor != null && commandCursor.moveToFirst())
-		{
-			do
-			{
-				long id = commandCursor.getLong(CommandDbAdapter.ID_COLUMN);
-				String name = commandCursor.getString(CommandDbAdapter.NAME_COLUMN);
-				int address = commandCursor.getInt(CommandDbAdapter.ADDRESS_COLUMN);
-				int command = commandCursor.getInt(CommandDbAdapter.COMMAND_COLUMN);
-				
-				commands.add(new Command(id, name, address, command));
-			}
-			while (commandCursor.moveToNext());
-		}
-		
+		commands = dbAdapter.getAllCommands(this);
+
 		listViewAdapter = new CustomCommandsListAdapter(this, commands);
 		commandsListView.setAdapter(listViewAdapter);
 		

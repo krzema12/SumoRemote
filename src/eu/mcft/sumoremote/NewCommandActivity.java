@@ -1,5 +1,7 @@
 package eu.mcft.sumoremote;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.SharedPreferences;
 import android.os.Bundle;
@@ -24,7 +26,10 @@ public class NewCommandActivity extends Activity implements TextWatcher
 	boolean correctAddress = true;
 	boolean correctCommand = true;
 	
-	CommandDbAdapter dbAdapter;
+	private CommandDbAdapter dbAdapter;
+	private ArrayList<Command> commands;
+	long commandID;	// used if we're editing a command
+	boolean newCommand; // true if we're creating a command, false if we're editing a command
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -40,16 +45,32 @@ public class NewCommandActivity extends Activity implements TextWatcher
 		setContentView(R.layout.activity_new_command);
 		
 		name = (EditText)findViewById(R.id.name);
-		name.setText(getString(R.string.command_default_name_prefix));
 		address = (EditText)findViewById(R.id.address);
 		command = (EditText)findViewById(R.id.command);
+
+		dbAdapter = new CommandDbAdapter(getApplicationContext());
+		dbAdapter.open();
+		
+		commands = dbAdapter.getAllCommands(this);
+		
+		commandID = getIntent().getLongExtra("commandID", -1);
+		newCommand = commandID == -1;
+		
+		if (newCommand)
+		{
+			name.setText(getString(R.string.command_default_name_prefix) + " " + (commands.size() + 1));
+		}
+		else
+		{
+			Command commandToEdit = dbAdapter.getCommand(commandID);
+			name.setText(commandToEdit.getName());
+			address.setText(Integer.toString(commandToEdit.getAddress()));
+			command.setText(Integer.toString(commandToEdit.getCommand()));
+		}
 		
 		name.addTextChangedListener(this);
 		address.addTextChangedListener(this);
 		command.addTextChangedListener(this);
-		
-		dbAdapter = new CommandDbAdapter(getApplicationContext());
-		dbAdapter.open();
 	}
 	
 	@Override
@@ -124,9 +145,19 @@ public class NewCommandActivity extends Activity implements TextWatcher
 		switch (item.getItemId())
 		{
 			case R.id.action_add_command_confirm:
-				dbAdapter.insertCommand(	new Command(name.getText().toString(),
-												Integer.parseInt(address.getText().toString()),
-												Integer.parseInt(command.getText().toString())));
+				if (newCommand)
+				{
+					dbAdapter.insertCommand(new Command(	name.getText().toString(),
+															Integer.parseInt(address.getText().toString()),
+															Integer.parseInt(command.getText().toString())));
+				}
+				else
+				{
+					dbAdapter.updateCommand(commandID,
+											name.getText().toString(),
+											Integer.parseInt(address.getText().toString()),
+											Integer.parseInt(command.getText().toString()));
+				}
 				
 				setResult(Activity.RESULT_OK);
 				finish();

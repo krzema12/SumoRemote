@@ -35,5 +35,9 @@
     <string name="no_commands">Brak komend.\n\nMożesz dodać nowe komendy naciskając przycisk \'+\' w górnym prawym rogu.</string>
     <string name="name_too_short">Nazwa nie może być pusta.</string>
     <string name="command_default_name_prefix">Komenda</string>
-
+    
+    <string name="send">Wyślij</string>
+    <string name="edit">Zmień</string>
+    <string name="delete">Usuń</string>
+    
 </resources>

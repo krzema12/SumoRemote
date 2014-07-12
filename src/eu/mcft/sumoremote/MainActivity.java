@@ -72,7 +72,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		startButton = (Button)findViewById(R.id.startButton);
 		stopButton = (Button)findViewById(R.id.stopButton);
 		
-		irSender = IRSender.create(this);
+		irSender = SharedIRSender.getSender(this);
 		
 		if (irSender == null)
 		{

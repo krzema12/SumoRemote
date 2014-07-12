@@ -11,8 +11,11 @@
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
         android:layout_alignParentTop="true"
+        android:layout_toLeftOf="@+id/sendButton"
+        android:ellipsize="end"
         android:paddingLeft="10dp"
-        android:text="Medium Text"
+        android:singleLine="true"
+        android:text="@string/command_name_dummy"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <Button
@@ -23,16 +26,19 @@
         android:layout_alignParentRight="true"
         android:layout_alignParentTop="true"
         android:focusable="false"
-        android:text="Send" />
+        android:text="@string/send" />
 
     <TextView
         android:id="@+id/addressAndCommand"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentLeft="true"
+        android:layout_alignRight="@+id/commandName"
         android:layout_below="@+id/commandName"
+        android:ellipsize="end"
+        android:singleLine="true"
         android:paddingLeft="15dp"
-        android:text="Small Text"
+        android:text="@string/address_and_command_dummy"
         android:textAppearance="?android:attr/textAppearanceSmall" />
 
 </RelativeLayout>
