@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+	<declare-styleable name="custom_menu">
+		<attr name="icon_add" format="reference" />
+		<attr name="icon_accept" format="reference" />
+	</declare-styleable>
+</resources>

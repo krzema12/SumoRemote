@@ -72,7 +72,7 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 		startButton = (Button)findViewById(R.id.startButton);
 		stopButton = (Button)findViewById(R.id.stopButton);
 		
-		irSender = IRSender.create(this);
+		irSender = SharedIRSender.getSender(this);
 		
 		if (irSender == null)
 		{
@@ -136,6 +136,10 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 				return true;
 			case R.id.action_preferences:
 				intent = new Intent(MainActivity.this, SetPreferenceActivity.class);
+				startActivityForResult(intent, 0);
+				return true;
+			case R.id.action_custom_commands:
+				intent = new Intent(MainActivity.this, CustomCommandsActivity.class);
 				startActivityForResult(intent, 0);
 				return true;
 			default:

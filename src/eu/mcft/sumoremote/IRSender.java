@@ -5,7 +5,11 @@ import android.os.Build;
 
 public abstract class IRSender
 {
-	public abstract void SendCommand(int address, int command);
+	public void SendCommand(int address, int command)
+	{
+		SendCommand(((address&0x1F)<<6)|(command&0x3F));
+	}
+	
 	public abstract void SendCommand(int data);
 	
 	public static IRSender create(Context context)
@@ -19,7 +23,7 @@ public abstract class IRSender
 			{
 				face = new HTCRC5Sender(context);
 			}
-			catch (Exception ex){}
+			catch (Exception ex) { }
 		}
 
 		// Samsung
@@ -29,7 +33,7 @@ public abstract class IRSender
 			{
 				face = new SamsungRC5Sender(context);
 			}
-			catch (Exception ex){}
+			catch (Exception ex) { }
 		}
 
 		// universal (KitKat and newer)
@@ -41,7 +45,7 @@ public abstract class IRSender
 				{
 					face = new KitKatRC5Sender(context);
 				}
-				catch (Exception ex){}
+				catch (Exception ex) { }
 			}
 		}
 
