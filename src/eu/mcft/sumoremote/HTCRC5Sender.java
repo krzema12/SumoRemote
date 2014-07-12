@@ -30,13 +30,7 @@ public class HTCRC5Sender extends IRSender
 			throw new Exception("No HTC Device");
 		}
 	}
-
-	@Override
-	public void SendCommand(int address, int command)
-	{
-		SendCommand(((address&0x1F)<<6)|(command&0x3F));
-	}
-
+	
 	@Override
 	public void SendCommand(int data)
 	{

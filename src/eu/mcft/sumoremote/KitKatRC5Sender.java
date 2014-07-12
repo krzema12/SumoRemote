@@ -27,12 +27,6 @@ public class KitKatRC5Sender extends IRSender
 		if (!mKkIr.hasIrEmitter())
 			throw new Exception("No KitKat IR Device");
 	}
-	
-	@Override
-	public void SendCommand(int address, int command)
-	{
-		SendCommand(((address&0x1F)<<6)|(command&0x3F));
-	}
 
 	@Override
 	public void SendCommand(int data)

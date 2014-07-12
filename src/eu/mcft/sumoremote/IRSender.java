@@ -5,7 +5,11 @@ import android.os.Build;
 
 public abstract class IRSender
 {
-	public abstract void SendCommand(int address, int command);
+	public void SendCommand(int address, int command)
+	{
+		SendCommand(((address&0x1F)<<6)|(command&0x3F));
+	}
+	
 	public abstract void SendCommand(int data);
 	
 	public static IRSender create(Context context)

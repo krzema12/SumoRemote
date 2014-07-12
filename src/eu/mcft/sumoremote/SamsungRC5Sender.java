@@ -32,11 +32,6 @@ public class SamsungRC5Sender extends IRSender
 			e.printStackTrace();
 		}
 	}
-	
-	public void SendCommand(int address, int command)
-	{
-		SendCommand(((address&0x1F)<<6)|(command&0x3F));
-	}
 
 	public void SendCommand(int data)
 	{

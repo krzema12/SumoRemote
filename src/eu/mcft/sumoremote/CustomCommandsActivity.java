@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.view.ContextMenu;
@@ -25,7 +24,6 @@ public class CustomCommandsActivity extends Activity
 	private CustomCommandsListAdapter listViewAdapter;
 	
 	private CommandDbAdapter dbAdapter;
-	private Cursor commandCursor;
 	private ArrayList<Command> commands;
 	
 	private static final int SEND = 0;
@@ -77,6 +75,8 @@ public class CustomCommandsActivity extends Activity
 		switch(item.getItemId())
 		{
 			case SEND:
+				Command command = commands.get(info.position);
+				SharedIRSender.getSender(this).SendCommand(command.getAddress(), command.getCommand());
 			break;
 			case EDIT:
 				commandID = commands.get(info.position).getId();
