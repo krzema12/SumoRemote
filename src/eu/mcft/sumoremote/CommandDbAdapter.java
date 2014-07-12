@@ -6,6 +6,7 @@ import android.app.Activity;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.database.DatabaseUtils;
 import android.database.SQLException;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
@@ -41,7 +42,7 @@ public class CommandDbAdapter
 		KEY_COMMAND + " " + COMMAND_OPTIONS +
 		");";
 	
-	private static final String DROP_TODO_TABLE =
+	private static final String DROP_COMMANDS_TABLE =
 		"DROP TABLE IF EXISTS " + DB_COMMANDS_TABLE;
 	
 	private SQLiteDatabase db;
@@ -107,6 +108,24 @@ public class CommandDbAdapter
 		return db.delete(DB_COMMANDS_TABLE, where, null) > 0;
 	}
 	
+	public long findCommandIDByName(String name)
+	{
+		String where = KEY_NAME + "='" + name + "'";
+		String[] columns = {KEY_ID};
+		
+		Cursor cursor = db.query(DB_COMMANDS_TABLE, columns, where, null, null, null, null);
+		
+		if (cursor != null && cursor.moveToFirst())
+		{
+			int ID = cursor.getInt(ID_COLUMN);
+			return ID;
+		}
+		else
+		{
+			return -1;
+		}
+	}
+	
 	private Cursor getAllCommands()
 	{
 		String[] columns = {KEY_ID, KEY_NAME, KEY_ADDRESS, KEY_COMMAND};
@@ -121,7 +140,7 @@ public class CommandDbAdapter
 		Cursor cursor = db.query(DB_COMMANDS_TABLE, columns, where, null, null, null, null);
 		Command thisCommand = null;
 		
-		if(cursor != null && cursor.moveToFirst())
+		if (cursor != null && cursor.moveToFirst())
 		{
 			String name = cursor.getString(NAME_COLUMN);
 			int address = cursor.getInt(ADDRESS_COLUMN);
@@ -130,6 +149,11 @@ public class CommandDbAdapter
 		}
 		
 		return thisCommand;
+	}
+	
+	public long getNumberOfCommands()
+	{
+		return DatabaseUtils.queryNumEntries(db, DB_COMMANDS_TABLE);
 	}
 	
 	public ArrayList<Command> getAllCommands(Activity activity)
@@ -177,10 +201,8 @@ public class CommandDbAdapter
 		@Override
 		public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion)
 		{
-			db.execSQL(DROP_TODO_TABLE);
+			db.execSQL(DROP_COMMANDS_TABLE);
 			onCreate(db);
 		}
-	}
-	
-	
+	}	
 }

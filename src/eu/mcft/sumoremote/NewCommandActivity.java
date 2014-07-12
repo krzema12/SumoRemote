@@ -3,6 +3,8 @@ package eu.mcft.sumoremote;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
@@ -27,9 +29,10 @@ public class NewCommandActivity extends Activity implements TextWatcher
 	boolean correctCommand = true;
 	
 	private CommandDbAdapter dbAdapter;
-	private ArrayList<Command> commands;
-	long commandID;	// used if we're editing a command
+	long commandID; // used if we're editing a command
 	boolean newCommand; // true if we're creating a command, false if we're editing a command
+	long existingCommandID;
+	String oldName;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
@@ -51,14 +54,12 @@ public class NewCommandActivity extends Activity implements TextWatcher
 		dbAdapter = new CommandDbAdapter(getApplicationContext());
 		dbAdapter.open();
 		
-		commands = dbAdapter.getAllCommands(this);
-		
 		commandID = getIntent().getLongExtra("commandID", -1);
 		newCommand = commandID == -1;
 		
 		if (newCommand)
 		{
-			name.setText(getString(R.string.command_default_name_prefix) + " " + (commands.size() + 1));
+			name.setText(getString(R.string.command_default_name_prefix) + " " + (dbAdapter.getNumberOfCommands() + 1));
 		}
 		else
 		{
@@ -66,6 +67,7 @@ public class NewCommandActivity extends Activity implements TextWatcher
 			name.setText(commandToEdit.getName());
 			address.setText(Integer.toString(commandToEdit.getAddress()));
 			command.setText(Integer.toString(commandToEdit.getCommand()));
+			oldName = commandToEdit.getName();
 		}
 		
 		name.addTextChangedListener(this);
@@ -145,22 +147,83 @@ public class NewCommandActivity extends Activity implements TextWatcher
 		switch (item.getItemId())
 		{
 			case R.id.action_add_command_confirm:
-				if (newCommand)
-				{
-					dbAdapter.insertCommand(new Command(	name.getText().toString(),
-															Integer.parseInt(address.getText().toString()),
-															Integer.parseInt(command.getText().toString())));
-				}
-				else
+
+				if (newCommand == false && oldName.equals(name.getText().toString()))
 				{
 					dbAdapter.updateCommand(commandID,
+							name.getText().toString(),
+							Integer.parseInt(address.getText().toString()),
+							Integer.parseInt(command.getText().toString()));
+				}
+				else
+				{	
+					existingCommandID = dbAdapter.findCommandIDByName(name.getText().toString());
+					
+					if (existingCommandID == -1) // if a command with such name doesn't exist
+					{
+						if (newCommand)
+						{
+							dbAdapter.insertCommand(new Command(name.getText().toString(),
+																Integer.parseInt(address.getText().toString()),
+																Integer.parseInt(command.getText().toString())));
+						}
+						else
+						{
+							dbAdapter.updateCommand(commandID,
+									name.getText().toString(),
+									Integer.parseInt(address.getText().toString()),
+									Integer.parseInt(command.getText().toString()));
+						}
+					}
+					else
+					{
+						Command existingCommand = dbAdapter.getCommand(existingCommandID);
+						
+						if (existingCommand.getAddress() != Integer.parseInt(address.getText().toString()) ||
+							existingCommand.getCommand() != Integer.parseInt(command.getText().toString()))
+						{
+							AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+							alertDialogBuilder.setTitle(getString(R.string.overwrite));
+							alertDialogBuilder.setMessage(getString(R.string.overwrite_full_sentence));
+							alertDialogBuilder.setPositiveButton(getString(R.string.yes), new DialogInterface.OnClickListener()
+							{
+								@Override
+								public void onClick(DialogInterface dialog, int which)
+								{
+									dbAdapter.updateCommand(existingCommandID,
 											name.getText().toString(),
 											Integer.parseInt(address.getText().toString()),
 											Integer.parseInt(command.getText().toString()));
+									
+									if (newCommand == false)
+									{
+										dbAdapter.deleteCommand(commandID);
+									}
+									
+									dialog.dismiss();
+									
+									setResult(Activity.RESULT_OK);
+									finish();
+								}
+							});
+							alertDialogBuilder.setNegativeButton(getString(R.string.cancel), new DialogInterface.OnClickListener()
+							{
+								@Override
+								public void onClick(DialogInterface dialog, int which)
+								{
+									dialog.dismiss();
+								}
+							});
+							
+							alertDialogBuilder.show();
+							return true;
+						}
+					}
 				}
 				
 				setResult(Activity.RESULT_OK);
 				finish();
+
 				return true;
 			default:
 				return super.onOptionsItemSelected(item);

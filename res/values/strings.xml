@@ -48,7 +48,7 @@
     <string name="reduces_energy_usage">Reduces energy usage on AMOLEDs</string>
     
     <string name="no_commands">No custom commands.\n\nYou can add new commands by tapping the \'+\' button in the top-right corner.</string>
-    <string name="name_too_short">Name cannot be empty</string>
+    <string name="name_too_short">Name cannot be empty!</string>
     <string name="command_default_name_prefix">Command</string>
     
     <string name="send">Send</string>
@@ -56,5 +56,10 @@
     <string name="delete">Delete</string>
     <string name="command_name_dummy" translatable="false">Command name</string>
     <string name="address_and_command_dummy" translatable="false">Address and command</string>
+    
+    <string name="yes">Yes</string>
+    <string name="cancel">Cancel</string>
+    <string name="overwrite">Overwrite?</string>
+    <string name="overwrite_full_sentence">A command with this name already exists. Do you want to overwrite it?</string>
 
 </resources>
