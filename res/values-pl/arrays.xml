@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="screen_orientations">
+        <item>W pionie</item>
+        <item>W pionie (odwrócone)</item>
+        <item>W poziomie </item>
+        <item>W poziomie (odwrócone)</item>
+    </string-array>  
+</resources>

@@ -29,6 +29,8 @@
     <string name="use_home_mode">Aplikacja działa jak pilot od telewizora</string>
     
     <string name="appearance">Wygląd</string>
+    <string name="screen_orientation">Orientacja ekranu</string>
+    <string name="which_way_screen_rotated">Możesz wybrać najwygodniejsze ułożenie ekranu, w zależności od sytuacji lub Twojego urządzenia.</string>
     <string name="use_dark_theme">Używaj ciemnego motywu</string>
     <string name="reduces_energy_usage">Zmniejsza zużycie energii na AMOLEDach</string>
     

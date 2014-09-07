@@ -11,6 +11,14 @@
     <PreferenceCategory
         android:title="@string/appearance">
         
+        <ListPreference
+            android:title="@string/screen_orientation"
+            android:key="screen_orientation"
+            android:summary="@string/which_way_screen_rotated"
+            android:entries="@array/screen_orientations"
+            android:entryValues="@array/screen_orientations_values"
+            android:defaultValue="portrait"/>
+        
         <CheckBoxPreference android:title="@string/use_dark_theme"
             android:key="theme"
             android:summary="@string/reduces_energy_usage"/>
