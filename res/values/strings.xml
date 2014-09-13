@@ -32,6 +32,7 @@
 	    <item>Claudiu Avram</item>
 	    <item>Jarosław Korus</item>
 	    <item>Klaipeda University Robotics Club</item>
+	    <item>Mateusz Piotrzkowski</item>
 		<item>Mikołaj Belowski</item>
 		<item>Michał Kurpis</item>
 		<item>Petter Forsberg</item>
@@ -44,6 +45,8 @@
     <string name="use_home_mode">The app works like a TV remote</string>
     
     <string name="appearance">Appearance</string>
+    <string name="screen_orientation">Screen orientation</string>
+    <string name="which_way_screen_rotated">You can choose the most comfortable orientation, depending or the situation or your device.</string>
     <string name="use_dark_theme">Use dark theme</string>
     <string name="reduces_energy_usage">Reduces energy usage on AMOLEDs</string>
     
@@ -60,6 +63,6 @@
     <string name="yes">Yes</string>
     <string name="cancel">Cancel</string>
     <string name="overwrite">Overwrite?</string>
-    <string name="overwrite_full_sentence">A command with this name already exists. Do you want to overwrite it?</string>
+    <string name="overwrite_full_sentence">A command with this name already exists. Do you want to overwrite it?</string> 
 
 </resources>

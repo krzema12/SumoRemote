@@ -17,7 +17,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 import eu.mcft.sumoremote.R;
 
-public class CustomCommandsActivity extends Activity
+public class CustomCommandsActivity extends PrefsAdjustedActivity
 {
 	private TextView noCommandsTextView;
 	private ListView commandsListView;
@@ -33,13 +33,6 @@ public class CustomCommandsActivity extends Activity
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-
-		if(sharedPref.getBoolean("theme", false) == true)
-			setTheme(R.style.CustomDark);
-		else
-			setTheme(R.style.CustomLight);
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_custom_commands);
 		

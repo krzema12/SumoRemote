@@ -1,7 +1,5 @@
 package eu.mcft.sumoremote;
 
-import java.util.ArrayList;
-
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
@@ -14,7 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
 
-public class NewCommandActivity extends Activity implements TextWatcher
+public class NewCommandActivity extends PrefsAdjustedActivity implements TextWatcher
 {
 	EditText name;
 	EditText address;
@@ -37,13 +35,6 @@ public class NewCommandActivity extends Activity implements TextWatcher
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-
-		if(sharedPref.getBoolean("theme", false) == true)
-			setTheme(R.style.CustomDark);
-		else
-			setTheme(R.style.CustomLight);
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_command);
 		
@@ -88,6 +79,11 @@ public class NewCommandActivity extends Activity implements TextWatcher
 	@Override
 	public void afterTextChanged(Editable textEdit)
 	{
+		// in landscape modes, this method get called when it shouldn't,
+		// so this little workaround should suppress the problem
+		if (this.menu == null)
+			return;
+		
 		if (name.getText() == textEdit)
 		{
 			String newName = textEdit.toString();
