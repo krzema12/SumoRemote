@@ -1,9 +1,6 @@
 package eu.mcft.sumoremote;
 
-import android.app.Activity;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 
 public class SetPreferenceActivity extends PrefsAdjustedActivity
 {

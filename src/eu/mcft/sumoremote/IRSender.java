@@ -15,27 +15,7 @@ public abstract class IRSender
 	public static IRSender create(Context context)
 	{
 		IRSender face = null;
-
-		// HTC
-		if (face == null)
-		{
-			try
-			{
-				face = new HTCRC5Sender(context);
-			}
-			catch (Exception ex) { }
-		}
-
-		// Samsung
-		if (face == null)
-		{
-			try
-			{
-				face = new SamsungRC5Sender(context);
-			}
-			catch (Exception ex) { }
-		}
-
+		
 		// universal (KitKat and newer)
 		if (face == null)
 		{
@@ -47,6 +27,36 @@ public abstract class IRSender
 				}
 				catch (Exception ex) { }
 			}
+		}
+
+		// Samsung
+		if (face == null)
+		{
+			try
+			{
+				face = new SamsungRC5Sender(context);
+			}
+			catch (Exception ex) { }
+		}
+		
+		// LG
+		if (face == null)
+		{
+			try
+			{
+				face = new LGRC5Sender(context);
+			}
+			catch (Exception ex) { }
+		}
+		
+		// HTC
+		if (face == null)
+		{
+			try
+			{
+				face = new HTCRC5Sender(context);
+			}
+			catch (Exception ex) { }
 		}
 
 		return face;
