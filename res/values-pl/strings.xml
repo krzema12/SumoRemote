@@ -5,6 +5,9 @@
     <string name="action_preferences">Ustawienia</string>
     <string name="action_custom_commands">Własne komendy</string>
     <string name="action_add_command">Dodaj komendę</string>
+    <string name="action_import">Importuj do Sumo Remote</string>
+    <string name="action_export_to_file">Eksportuj do pliku</string>
+    <string name="action_export_and_email">Eksportuj i wyślij e-mailem</string>
     
     <string name="address_range">Adres (0&#8211;31)</string>
     <string name="command_range">Komenda (0&#8211;63)</string>
@@ -46,5 +49,8 @@
     <string name="cancel">Anuluj</string>
     <string name="overwrite">Nadpisać?</string>
     <string name="overwrite_full_sentence">Komenda o takiej nazwie już istnieje. Czy chcesz ją nadpisać?</string>
+    
+    <string name="import_confirm">Potwierdź</string>
+    <string name="import_cancel">Anuluj</string>
     
 </resources>

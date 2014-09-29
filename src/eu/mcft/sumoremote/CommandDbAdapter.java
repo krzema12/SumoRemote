@@ -133,6 +133,11 @@ public class CommandDbAdapter
 		return db.query(DB_COMMANDS_TABLE, columns, null, null, null, null, orderBy);
 	}
 	
+	public void dropAllCommands()
+	{
+		db.delete(DB_COMMANDS_TABLE, null, null);
+	}
+	
 	public Command getCommand(long id)
 	{
 		String[] columns = {KEY_ID, KEY_NAME, KEY_ADDRESS, KEY_COMMAND};

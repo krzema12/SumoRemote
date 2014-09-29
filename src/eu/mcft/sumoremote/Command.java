@@ -22,6 +22,11 @@ public class Command
 		this.command = command;
 	}
 
+	public Command()
+	{
+
+	}
+
 	public long getId()
 	{
 		return id;

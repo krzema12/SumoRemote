@@ -9,7 +9,7 @@
     android:orientation="horizontal"
     tools:context=".MainActivity">
 	    <Button
-	        android:id="@+id/startButton"
+	        android:id="@+id/confirmButton"
 	        android:layout_width="0dip"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"
@@ -17,7 +17,7 @@
 	        android:textSize="38sp" />
 	
 	    <Button
-	        android:id="@+id/stopButton"
+	        android:id="@+id/cancelButton"
 	        android:layout_width="0dip"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"

@@ -35,7 +35,7 @@ public class CustomCommandsActivity extends PrefsAdjustedActivity
 		setContentView(R.layout.activity_custom_commands);
 		
 		noCommandsTextView = (TextView)findViewById(R.id.noCommandsTextView);
-		commandsListView = (ListView)findViewById(R.id.commandsListView);
+		commandsListView = (ListView)findViewById(R.id.loadedCommandsListView);
 		registerForContextMenu(commandsListView);
 		
 		dbAdapter = new CommandDbAdapter(getApplicationContext());

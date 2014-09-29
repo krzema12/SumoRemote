@@ -6,6 +6,9 @@
     <string name="action_preferences">Preferences</string>
     <string name="action_custom_commands">Custom commands</string>
     <string name="action_add_command">Add command</string>
+    <string name="action_import">Import with Sumo Remote</string>
+    <string name="action_export_to_file">Export to file</string>
+    <string name="action_export_and_email">Export and e-mail</string>
     
     <string name="address_range">Address (0&#8211;31)</string>
     <string name="command_range">Command (0&#8211;63)</string>
@@ -64,5 +67,8 @@
     <string name="cancel">Cancel</string>
     <string name="overwrite">Overwrite?</string>
     <string name="overwrite_full_sentence">A command with this name already exists. Do you want to overwrite it?</string> 
+    
+    <string name="import_confirm">Confirm</string>
+    <string name="import_cancel">Cancel</string>
 
 </resources>
