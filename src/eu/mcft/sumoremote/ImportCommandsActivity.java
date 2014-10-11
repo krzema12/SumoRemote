@@ -39,11 +39,12 @@ public class ImportCommandsActivity extends PrefsAdjustedActivity implements OnC
 		confirmButton.setOnClickListener(this);
 		cancelButton.setOnClickListener(this);
 		
-		Uri data = getIntent().getData();
+		Intent intent = getIntent();
+		Uri data = intent.getData();
 		
 		if (data != null)
 		{
-			getIntent().setData(null);
+			intent.setData(null);
 		    
 			try
 			{

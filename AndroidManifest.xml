@@ -51,12 +51,9 @@
             <intent-filter>
                 <action android:name="com.google.android.apps.drive.DRIVE_OPEN" />
                 <action android:name="android.intent.action.VIEW" />
-                <action android:name="android.intent.action.EDIT" />
-                <action android:name="android.intent.action.INSERT" />
                 <category android:name="android.intent.category.DEFAULT" />
-                <data android:mimeType="*/*" />
-                <data android:host="*" />
-                <data android:pathPattern=".*\\.src" />
+                <data android:scheme="file" />
+                <data android:host="*" android:mimeType="text/xml" android:pathPattern=".*\\.src" />
                 <!-- path pattern does not match dots correctly: http://stackoverflow.com/q/3400072/44089 -->
                 <data android:pathPattern=".*\\..*\\..*\\.src" />
                 <data android:pathPattern=".*\\..*\\..*\\..*\\.src" />
