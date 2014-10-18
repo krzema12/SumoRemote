@@ -93,15 +93,8 @@ public class ImportCommandsActivity extends PrefsAdjustedActivity implements OnC
 			}
 			
 			dbAdapter.close();
-			
-			// start main activity
-			Intent a = new Intent(this, CustomCommandsActivity.class);
-	        a.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|Intent.FLAG_ACTIVITY_SINGLE_TOP);
-	        startActivity(a);
 		}
-		else if (v == cancelButton)
-		{
-			finish();
-		}
+		
+		finish();
 	}
 }

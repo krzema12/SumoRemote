@@ -1,10 +1,18 @@
 package eu.mcft.sumoremote;
 
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
 import java.util.ArrayList;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.os.Environment;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -12,6 +20,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import eu.mcft.sumoremote.R;
 
@@ -20,7 +29,7 @@ public class CustomCommandsActivity extends PrefsAdjustedActivity
 	private TextView noCommandsTextView;
 	private ListView commandsListView;
 	private CustomCommandsListAdapter listViewAdapter;
-	
+
 	private CommandDbAdapter dbAdapter;
 	private ArrayList<Command> commands;
 	
@@ -107,9 +116,8 @@ public class CustomCommandsActivity extends PrefsAdjustedActivity
 	@Override
 	public boolean onCreateOptionsMenu(Menu menu)
 	{
-		// Inflate the menu; this adds items to the action bar if it is present.
 		getMenuInflater().inflate(R.menu.custom_commands, menu);
-		return true;
+		return super.onCreateOptionsMenu(menu);
 	}
 	
 	@Override
@@ -123,16 +131,47 @@ public class CustomCommandsActivity extends PrefsAdjustedActivity
 				intent = new Intent(this, NewCommandActivity.class);
 				startActivityForResult(intent, 0);
 				return true;
+			case R.id.action_share:
+				share();
+				return true;
 			default:
 				return super.onOptionsItemSelected(item);
 		}
 	}
 	
+	protected void share()
+	{
+		try
+		{
+			File cacheDir = getExternalCacheDir();
+			File outputFile = new File(cacheDir, "CustomCommands.src");
+			
+			FileOutputStream fos = new FileOutputStream(outputFile);
+			CustomCommandsXMLSerializer xmlSerializer = new CustomCommandsXMLSerializer(dbAdapter);
+			fos.write(xmlSerializer.getCommandsAsXML(this).getBytes());
+			fos.close();
+			
+			Intent i = new Intent(Intent.ACTION_SEND);
+		    i.setFlags(Intent.FLAG_GRANT_READ_URI_PERMISSION);
+		    i.setType("text/xml");
+		    i.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(outputFile));
+		    
+		    startActivityForResult(Intent.createChooser(i, getResources().getString(R.string.share_commands)), 1);
+		}
+		catch (IOException e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
 	protected void onActivityResult(int requestCode, int resultCode, Intent data)
 	{
-		if (resultCode == Activity.RESULT_OK)
+		if (requestCode == 0)
 		{
-			loadCommandsToListView();
+			if (resultCode == Activity.RESULT_OK)
+			{
+				loadCommandsToListView();
+			}
 		}
 	}
 	

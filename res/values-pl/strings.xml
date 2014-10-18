@@ -6,8 +6,7 @@
     <string name="action_custom_commands">Własne komendy</string>
     <string name="action_add_command">Dodaj komendę</string>
     <string name="action_import">Importuj do Sumo Remote</string>
-    <string name="action_export_to_file">Eksportuj do pliku</string>
-    <string name="action_export_and_email">Eksportuj i wyślij e-mailem</string>
+    <string name="action_share">Udostępnij</string>
     
     <string name="address_range">Adres (0&#8211;31)</string>
     <string name="command_range">Komenda (0&#8211;63)</string>
@@ -23,8 +22,9 @@
     <string name="ir_not_detected_button">Rozumiem, szkoda&#8230;</string>
     
     <string name="author">Autor: Piotr Krzemiński (mcft.eu)</string>
-    <string name="app_description">Aplikacja działa jako pilot do robotów sumo wyposażonych w takie moduły: http://www.konar.pwr.wroc.pl/sites/default/files/uploaded/moduly_opis.pdf.</string>
-    <string name="logo_description">Logo Magnat Cyber Forge Team</string>
+    <string name="partners">Partnerzy:</string>
+    <string name="mcft_logo">Logo Magnat Cyber Forge Team</string>
+    <string name="forbot_logo">Logo Forbota</string>
     <string name="people_who_helped_desc">Wielkie dzięki wszystkim, którzy pomogli mi przy tworzeniu Sumo Remote:</string>
 
     <string name="general">Ogólne</string>
@@ -52,5 +52,7 @@
     
     <string name="import_confirm">Potwierdź</string>
     <string name="import_cancel">Anuluj</string>
+    
+    <string name="share_commands">Udostępnij komendy</string>
     
 </resources>

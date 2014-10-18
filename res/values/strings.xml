@@ -7,8 +7,7 @@
     <string name="action_custom_commands">Custom commands</string>
     <string name="action_add_command">Add command</string>
     <string name="action_import">Import with Sumo Remote</string>
-    <string name="action_export_to_file">Export to file</string>
-    <string name="action_export_and_email">Export and e-mail</string>
+    <string name="action_share">Share</string>
     
     <string name="address_range">Address (0&#8211;31)</string>
     <string name="command_range">Command (0&#8211;63)</string>
@@ -26,8 +25,9 @@
 
     <string name="author">by Piotr Krzemiński (mcft.eu)</string>
     <string name="version_dummy" translatable="false">v</string>
-    <string name="app_description">This app acts as a remote for sumo robots, compatible with these modules: http://www.startmodule.com/main-description/.</string>
-    <string name="logo_description">Magnat Cyber Forge Team logo</string>
+    <string name="partners">Partners:</string>
+    <string name="mcft_logo">Magnat Cyber Forge Team logo</string>
+    <string name="forbot_logo">Forbot logo</string>
     <string name="people_who_helped_desc">A big thanks for any help during the development of Sumo Remote go to:</string>
     
 	<string-array name="people_who_helped" translatable="false">
@@ -49,7 +49,7 @@
     
     <string name="appearance">Appearance</string>
     <string name="screen_orientation">Screen orientation</string>
-    <string name="which_way_screen_rotated">You can choose the most comfortable orientation, depending or the situation or your device.</string>
+    <string name="which_way_screen_rotated">You can choose the most comfortable orientation, according to the situation or your device.</string>
     <string name="use_dark_theme">Use dark theme</string>
     <string name="reduces_energy_usage">Reduces energy usage on AMOLEDs</string>
     
@@ -70,5 +70,7 @@
     
     <string name="import_confirm">Confirm</string>
     <string name="import_cancel">Cancel</string>
+    
+    <string name="share_commands">Share commands</string>
 
 </resources>

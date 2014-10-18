@@ -17,9 +17,9 @@ public abstract class PrefsAdjustedActivity extends Activity
 		
 		// setting the theme, according to the preferences
 		if (sharedPref.getBoolean("theme", false) == true)
-			setTheme(android.R.style.Theme_Holo);
+			setTheme(R.style.CustomDark);
 		else
-			setTheme(android.R.style.Theme_Holo_Light);
+			setTheme(R.style.CustomLight);
 		
 		// setting the orientation, according to the preferences
 		String orientation = sharedPref.getString("screen_orientation", "portrait");

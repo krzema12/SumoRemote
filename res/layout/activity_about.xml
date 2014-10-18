@@ -1,24 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
     android:paddingBottom="@dimen/activity_vertical_margin"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent" >
-
-    <ImageView
-        android:id="@+id/imageView1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentBottom="true"
-        android:layout_below="@+id/peopleWhoHelped"
-        android:layout_centerHorizontal="true"
-        android:layout_marginTop="20dp"
-        android:alpha="0.1"
-        android:contentDescription="@string/logo_description"
-        android:scaleType="fitCenter"
-        android:src="@drawable/mcft" />
+    android:paddingTop="@dimen/activity_vertical_margin" >
 
     <TextView
         android:id="@+id/appName"
@@ -49,35 +36,58 @@
         android:text="@string/author"
         android:textAppearance="?android:attr/textAppearanceLarge" />
 
+    <ListView
+        android:id="@+id/loadedCommandsListView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/peopleWhoHelped"
+        android:layout_centerHorizontal="true"
+        android:entries="@array/people_who_helped"
+        android:listSelector="@android:color/transparent" >
+    </ListView>
+
     <TextView
-        android:id="@+id/appDescription"
+        android:id="@+id/partners"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignLeft="@+id/author"
         android:layout_below="@+id/author"
-        android:layout_marginTop="35dp"
-        android:text="@string/app_description"
+        android:layout_marginTop="15dp"
+        android:text="@string/partners"
         android:textSize="18sp" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout1"
+        android:layout_width="wrap_content"
+        android:layout_height="100dip"
+        android:layout_alignLeft="@+id/peopleWhoHelped"
+        android:layout_below="@+id/partners" >
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/mcft_logo"
+            android:padding="10dp"
+            android:src="@drawable/mcft" />
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:contentDescription="@string/forbot_logo"
+            android:padding="10dp"
+            android:src="@drawable/forbot" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/peopleWhoHelped"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/appDescription"
-        android:layout_below="@+id/appDescription"
-        android:layout_marginTop="16dp"
+        android:layout_alignLeft="@+id/loadedCommandsListView"
+        android:layout_below="@+id/linearLayout1"
         android:text="@string/people_who_helped_desc"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
-    <ListView
-        android:id="@+id/loadedCommandsListView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignLeft="@+id/imageView1"
-        android:layout_alignTop="@+id/imageView1"
-        android:entries="@array/people_who_helped"
-        android:listSelector="@android:color/transparent" >
-
-    </ListView>
- 
 </RelativeLayout>
