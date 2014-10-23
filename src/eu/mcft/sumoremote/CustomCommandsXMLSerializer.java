@@ -10,9 +10,10 @@ public class CustomCommandsXMLSerializer
 {
 	private CommandsDataSource dataSource;
 	
-	public CustomCommandsXMLSerializer(CommandsDataSource dbAdapter)
+	public CustomCommandsXMLSerializer(CommandsDataSource dataSource)
 	{
-		this.dataSource = dbAdapter;
+		// it should be already open, so we don't need to open and close it here
+		this.dataSource = dataSource;
 	}
 	
 	public String getCommandsAsXML()
@@ -21,8 +22,7 @@ public class CustomCommandsXMLSerializer
 		{
 			StringWriter writer = new StringWriter();
 			XmlSerializer serializer = Xml.newSerializer();
-			
-			dataSource.open();
+
 			ArrayList<Command> commands = (ArrayList<Command>)dataSource.getAllCommands();
 
 			serializer.setOutput(writer);
@@ -42,9 +42,7 @@ public class CustomCommandsXMLSerializer
 			serializer.endTag(null, "commands");
 			serializer.endDocument();
 	        serializer.flush();
-			
-			dataSource.close();
-			
+
 			return writer.toString();
 		
 		} catch (IllegalArgumentException | IllegalStateException | IOException e) {
@@ -53,7 +51,4 @@ public class CustomCommandsXMLSerializer
 		
 		return "";
 	}
-	
-	
-
 }

@@ -58,13 +58,13 @@
 
     <LinearLayout
         android:id="@+id/linearLayout1"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="100dip"
         android:layout_alignLeft="@+id/peopleWhoHelped"
         android:layout_below="@+id/partners" >
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:contentDescription="@string/mcft_logo"
@@ -72,9 +72,9 @@
             android:src="@drawable/mcft" />
 
         <ImageView
-            android:layout_width="wrap_content"
+            android:layout_width="0dip"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
+			android:layout_weight="1"
             android:contentDescription="@string/forbot_logo"
             android:padding="10dp"
             android:src="@drawable/forbot" />
