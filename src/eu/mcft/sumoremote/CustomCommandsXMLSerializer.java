@@ -3,31 +3,27 @@ package eu.mcft.sumoremote;
 import java.io.IOException;
 import java.io.StringWriter;
 import java.util.ArrayList;
-
 import org.xmlpull.v1.XmlSerializer;
-
-import android.app.Activity;
-import android.content.Context;
 import android.util.Xml;
 
 public class CustomCommandsXMLSerializer
 {
-	private CommandDbAdapter dbAdapter;
+	private CommandsDataSource dataSource;
 	
-	public CustomCommandsXMLSerializer(CommandDbAdapter dbAdapter)
+	public CustomCommandsXMLSerializer(CommandsDataSource dbAdapter)
 	{
-		this.dbAdapter = dbAdapter;
+		this.dataSource = dbAdapter;
 	}
 	
-	public String getCommandsAsXML(Activity activity)
+	public String getCommandsAsXML()
 	{
 		try
 		{
 			StringWriter writer = new StringWriter();
 			XmlSerializer serializer = Xml.newSerializer();
 			
-			dbAdapter.open();
-			ArrayList<Command> commands = dbAdapter.getAllCommands(activity);
+			dataSource.open();
+			ArrayList<Command> commands = (ArrayList<Command>)dataSource.getAllCommands();
 
 			serializer.setOutput(writer);
 			serializer.startDocument("UTF-8", true);
@@ -47,7 +43,7 @@ public class CustomCommandsXMLSerializer
 			serializer.endDocument();
 	        serializer.flush();
 			
-			dbAdapter.close();
+			dataSource.close();
 			
 			return writer.toString();
 		

@@ -1,18 +1,13 @@
 package eu.mcft.sumoremote;
 
 import java.io.File;
-import java.io.FileNotFoundException;
 import java.io.FileOutputStream;
 import java.io.IOException;
-import java.io.OutputStreamWriter;
 import java.util.ArrayList;
-
 import android.app.Activity;
-import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.os.Environment;
 import android.view.ContextMenu;
 import android.view.ContextMenu.ContextMenuInfo;
 import android.view.Menu;
@@ -20,7 +15,6 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.ShareActionProvider;
 import android.widget.TextView;
 import eu.mcft.sumoremote.R;
 
@@ -30,7 +24,7 @@ public class CustomCommandsActivity extends PrefsAdjustedActivity
 	private ListView commandsListView;
 	private CustomCommandsListAdapter listViewAdapter;
 
-	private CommandDbAdapter dbAdapter;
+	private CommandsDataSource dataSource;
 	private ArrayList<Command> commands;
 	
 	private static final int SEND = 0;
@@ -47,10 +41,8 @@ public class CustomCommandsActivity extends PrefsAdjustedActivity
 		commandsListView = (ListView)findViewById(R.id.loadedCommandsListView);
 		registerForContextMenu(commandsListView);
 		
-		dbAdapter = new CommandDbAdapter(getApplicationContext());
-		dbAdapter.open();
-		
-		loadCommandsToListView();
+		dataSource = new CommandsDataSource(getApplicationContext());
+		dataSource.open();
 	}
 	
 	// http://www.mikeplate.com/2010/01/21/show-a-context-menu-for-long-clicks-in-an-android-listview/
@@ -89,7 +81,7 @@ public class CustomCommandsActivity extends PrefsAdjustedActivity
 			break;
 			case DELETE:
 				commandID = commands.get(info.position).getId();
-				dbAdapter.deleteCommand(commandID);
+				dataSource.deleteCommand(commandID);
 				
 				loadCommandsToListView();
 			break;
@@ -102,7 +94,7 @@ public class CustomCommandsActivity extends PrefsAdjustedActivity
 	
 	private void loadCommandsToListView()
 	{
-		commands = dbAdapter.getAllCommands(this);
+		commands = (ArrayList<Command>)dataSource.getAllCommands();
 
 		listViewAdapter = new CustomCommandsListAdapter(this, commands);
 		commandsListView.setAdapter(listViewAdapter);
@@ -147,8 +139,8 @@ public class CustomCommandsActivity extends PrefsAdjustedActivity
 			File outputFile = new File(cacheDir, "CustomCommands.src");
 			
 			FileOutputStream fos = new FileOutputStream(outputFile);
-			CustomCommandsXMLSerializer xmlSerializer = new CustomCommandsXMLSerializer(dbAdapter);
-			fos.write(xmlSerializer.getCommandsAsXML(this).getBytes());
+			CustomCommandsXMLSerializer xmlSerializer = new CustomCommandsXMLSerializer(dataSource);
+			fos.write(xmlSerializer.getCommandsAsXML().getBytes());
 			fos.close();
 			
 			Intent i = new Intent(Intent.ACTION_SEND);
@@ -156,7 +148,7 @@ public class CustomCommandsActivity extends PrefsAdjustedActivity
 		    i.setType("text/xml");
 		    i.putExtra(Intent.EXTRA_STREAM, Uri.fromFile(outputFile));
 		    
-		    startActivityForResult(Intent.createChooser(i, getResources().getString(R.string.share_commands)), 1);
+		    startActivity(Intent.createChooser(i, getResources().getString(R.string.share_commands)));
 		}
 		catch (IOException e)
 		{
@@ -164,21 +156,17 @@ public class CustomCommandsActivity extends PrefsAdjustedActivity
 		}
 	}
 	
-	protected void onActivityResult(int requestCode, int resultCode, Intent data)
+	@Override
+	public void onResume()
 	{
-		if (requestCode == 0)
-		{
-			if (resultCode == Activity.RESULT_OK)
-			{
-				loadCommandsToListView();
-			}
-		}
+		super.onResume();
+		loadCommandsToListView();
 	}
 	
 	protected void onDestroy()
 	{
-		if (dbAdapter != null)
-			dbAdapter.close();
+		if (dataSource != null)
+			dataSource.close();
 		
 		super.onDestroy();
 	}

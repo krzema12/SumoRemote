@@ -12,7 +12,7 @@
         android:orientation="horizontal">
 
         <Button
-            android:id="@+id/confirmButton"
+            android:id="@+id/startButton"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dip"
             android:layout_height="match_parent"
@@ -20,7 +20,7 @@
             android:text="@string/import_confirm" />
 
         <Button
-            android:id="@+id/cancelButton"
+            android:id="@+id/stopButton"
             style="?android:attr/buttonBarButtonStyle"
             android:layout_width="0dip"
             android:layout_height="match_parent"

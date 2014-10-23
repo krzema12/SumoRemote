@@ -33,8 +33,8 @@ public class ImportCommandsActivity extends PrefsAdjustedActivity implements OnC
 		setContentView(R.layout.activity_import);
 		
 		loadedCommandsListView = (ListView)findViewById(R.id.loadedCommandsListView);
-		confirmButton = (Button)findViewById(R.id.confirmButton);
-		cancelButton = (Button)findViewById(R.id.cancelButton);
+		confirmButton = (Button)findViewById(R.id.startButton);
+		cancelButton = (Button)findViewById(R.id.stopButton);
 		
 		confirmButton.setOnClickListener(this);
 		cancelButton.setOnClickListener(this);
@@ -83,7 +83,7 @@ public class ImportCommandsActivity extends PrefsAdjustedActivity implements OnC
 	{		
 		if (v == confirmButton)
 		{
-			CommandDbAdapter dbAdapter = new CommandDbAdapter(getApplicationContext());
+			CommandsDataSource dbAdapter = new CommandsDataSource(getApplicationContext());
 			dbAdapter.open();
 			dbAdapter.dropAllCommands();
 			

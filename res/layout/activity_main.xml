@@ -57,7 +57,7 @@
         android:orientation="horizontal" >
 
 	    <Button
-	        android:id="@+id/confirmButton"
+	        android:id="@+id/startButton"
 	        android:layout_width="0dip"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"
@@ -65,7 +65,7 @@
 	        android:textSize="38sp" />
 	
 	    <Button
-	        android:id="@+id/cancelButton"
+	        android:id="@+id/stopButton"
 	        android:layout_width="0dip"
 	        android:layout_height="match_parent"
 	        android:layout_weight="1"

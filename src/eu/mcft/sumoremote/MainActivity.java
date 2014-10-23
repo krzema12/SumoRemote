@@ -63,8 +63,8 @@ public class MainActivity extends PrefsAdjustedActivity implements OnClickListen
 			setContentView(R.layout.activity_main_home);
 		}
 		
-		startButton = (Button)findViewById(R.id.confirmButton);
-		stopButton = (Button)findViewById(R.id.cancelButton);
+		startButton = (Button)findViewById(R.id.startButton);
+		stopButton = (Button)findViewById(R.id.stopButton);
 		
 		irSender = SharedIRSender.getSender(this);
 		
