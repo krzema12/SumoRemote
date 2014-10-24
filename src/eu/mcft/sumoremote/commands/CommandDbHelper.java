@@ -1,4 +1,4 @@
-package eu.mcft.sumoremote;
+package eu.mcft.sumoremote.commands;
 
 import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;

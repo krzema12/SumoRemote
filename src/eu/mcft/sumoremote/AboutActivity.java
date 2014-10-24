@@ -1,6 +1,7 @@
 package eu.mcft.sumoremote;
 
 import eu.mcft.sumoremote.R;
+import eu.mcft.sumoremote.preferences.PrefsAdjustedActivity;
 import android.content.pm.PackageManager.NameNotFoundException;
 import android.os.Bundle;
 import android.widget.TextView;

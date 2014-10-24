@@ -1,4 +1,4 @@
-package eu.mcft.sumoremote;
+package eu.mcft.sumoremote.commands;
 
 import java.util.ArrayList;
 
@@ -9,6 +9,8 @@ import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import eu.mcft.sumoremote.*;
+import eu.mcft.sumoremote.senders.SharedIRSender;
 
 public class CustomCommandsListAdapter extends ArrayAdapter<Command>
 {

@@ -1,4 +1,4 @@
-package eu.mcft.sumoremote;
+package eu.mcft.sumoremote.commands;
 
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -9,6 +9,8 @@ import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import eu.mcft.sumoremote.*;
+import eu.mcft.sumoremote.preferences.PrefsAdjustedActivity;
 
 public class NewCommandActivity extends PrefsAdjustedActivity implements TextWatcher
 {

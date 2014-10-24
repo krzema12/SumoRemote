@@ -1,6 +1,11 @@
 package eu.mcft.sumoremote;
 
 import eu.mcft.sumoremote.R;
+import eu.mcft.sumoremote.commands.CustomCommandsActivity;
+import eu.mcft.sumoremote.preferences.PrefsAdjustedActivity;
+import eu.mcft.sumoremote.preferences.SetPreferenceActivity;
+import eu.mcft.sumoremote.senders.IRSender;
+import eu.mcft.sumoremote.senders.SharedIRSender;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;

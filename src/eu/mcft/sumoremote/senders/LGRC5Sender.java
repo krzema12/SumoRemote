@@ -1,15 +1,16 @@
-package eu.mcft.sumoremote;
+package eu.mcft.sumoremote.senders;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import android.content.Context;
 
-import com.htc.circontrol.CIRControl;
-import com.htc.htcircontrol.HtcIrData;
+import com.lge.hardware.IRBlaster.*;
 
-public class HTCRC5Sender extends IRSender
+public class LGRC5Sender extends IRSender
 {
-	CIRControl htcIrControl;
+	private IRBlaster mIR = null;
+	
 	static final int FREQUENCY = 38000;
 	List<Integer> frame = new ArrayList<Integer>();
 	
@@ -18,19 +19,32 @@ public class HTCRC5Sender extends IRSender
 	
 	private static final int CYCLES_IN_BURST = 32;
 	
-	public HTCRC5Sender(Context context) throws Exception
+	// unused, but passed to the getIRBlaster method just in case
+	private IRBlasterCallback mIrBlasterReadyCallback = new IRBlasterCallback()
 	{
-		try
+		@Override
+        public void IRBlasterReady() { }
+		
+        @Override
+        public void learnIRCompleted(int status) { }
+        
+        @Override
+        public void newDeviceId(int id) { }
+	};
+	
+	public LGRC5Sender(Context context) throws Exception
+	{
+		if (IRBlaster.isSdkSupported(context))
 		{
-			htcIrControl = new CIRControl(context, null);
-			htcIrControl.start();
+			mIR = IRBlaster.getIRBlaster(context, mIrBlasterReadyCallback);
 		}
-		catch (NoClassDefFoundError ncde)
+		
+		if (mIR == null)
 		{
-			throw new Exception("No HTC Device");
+			throw new Exception("No LG IR Device");
 		}
 	}
-	
+
 	@Override
 	public void SendCommand(int data)
 	{
@@ -62,8 +76,7 @@ public class HTCRC5Sender extends IRSender
 		// sending the code
 		try
 		{
-			HtcIrData ird = new HtcIrData(1, FREQUENCY, frameArray);
-			htcIrControl.transmitIRCmd(ird, true);
+			mIR.sendIRPattern(FREQUENCY, frameArray);
 		}
 		catch (Exception e)
 		{
@@ -99,8 +112,7 @@ public class HTCRC5Sender extends IRSender
 	
 	private void flush()
 	{
-		if(currentState == false)
+		if(currentState == true)
 			frame.add(CYCLES_IN_BURST);
 	}
-
 }

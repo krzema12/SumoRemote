@@ -1,4 +1,4 @@
-package eu.mcft.sumoremote;
+package eu.mcft.sumoremote.commands;
 
 import java.io.BufferedReader;
 import java.io.File;
@@ -19,6 +19,8 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ListView;
+import eu.mcft.sumoremote.R;
+import eu.mcft.sumoremote.preferences.PrefsAdjustedActivity;
 
 public class ImportCommandsActivity extends PrefsAdjustedActivity implements OnClickListener
 {

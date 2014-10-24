@@ -1,5 +1,6 @@
-package eu.mcft.sumoremote;
+package eu.mcft.sumoremote.preferences;
 
+import eu.mcft.sumoremote.R;
 import android.os.Bundle;
 import android.preference.PreferenceFragment;
 

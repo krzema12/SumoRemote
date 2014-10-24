@@ -1,9 +1,10 @@
-package eu.mcft.sumoremote;
+package eu.mcft.sumoremote.commands;
 
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -16,6 +17,8 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 import eu.mcft.sumoremote.R;
+import eu.mcft.sumoremote.preferences.PrefsAdjustedActivity;
+import eu.mcft.sumoremote.senders.SharedIRSender;
 
 public class CustomCommandsActivity extends PrefsAdjustedActivity
 {

@@ -33,20 +33,20 @@
             android:label="@string/action_about"
             android:screenOrientation="portrait" />
         <activity
-            android:name="eu.mcft.sumoremote.SetPreferenceActivity"
+            android:name="eu.mcft.sumoremote.preferences.SetPreferenceActivity"
             android:label="@string/action_preferences"
             android:screenOrientation="portrait" />
         <activity
-            android:name="eu.mcft.sumoremote.CustomCommandsActivity"
+            android:name="eu.mcft.sumoremote.commands.CustomCommandsActivity"
             android:label="@string/action_custom_commands"
             android:screenOrientation="portrait" />
         <activity
-            android:name="eu.mcft.sumoremote.NewCommandActivity"
+            android:name="eu.mcft.sumoremote.commands.NewCommandActivity"
             android:label="@string/action_add_command"
             android:screenOrientation="portrait" />  
             
         <activity
-            android:name="eu.mcft.sumoremote.ImportCommandsActivity"
+            android:name="eu.mcft.sumoremote.commands.ImportCommandsActivity"
             android:label="@string/action_import"
             android:screenOrientation="portrait"
             android:launchMode="singleTask">
@@ -54,9 +54,14 @@
             <intent-filter>
                 <action android:name="com.google.android.apps.drive.DRIVE_OPEN" />
                 <action android:name="android.intent.action.VIEW" />
+                
                 <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                
                 <data android:scheme="file" />
-                <data android:host="*" android:mimeType="text/xml" android:pathPattern=".*\\.src" />
+                <data android:mimeType="*/*" />
+                <data android:host="*" />
+                <data android:pathPattern=".*\\.src" />
                 <!-- path pattern does not match dots correctly: http://stackoverflow.com/q/3400072/44089 -->
                 <data android:pathPattern=".*\\..*\\..*\\.src" />
                 <data android:pathPattern=".*\\..*\\..*\\..*\\.src" />

@@ -1,15 +1,16 @@
-package eu.mcft.sumoremote;
+package eu.mcft.sumoremote.senders;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import android.annotation.TargetApi;
 import android.content.Context;
+import android.hardware.ConsumerIrManager;
 
-import com.lge.hardware.IRBlaster.*;
-
-public class LGRC5Sender extends IRSender
+@TargetApi(19)
+public class KitKatRC5Sender extends IRSender
 {
-	private IRBlaster mIR = null;
+	private ConsumerIrManager mKkIr;
 	
 	static final int FREQUENCY = 38000;
 	List<Integer> frame = new ArrayList<Integer>();
@@ -19,30 +20,12 @@ public class LGRC5Sender extends IRSender
 	
 	private static final int CYCLES_IN_BURST = 32;
 	
-	// unused, but passed to the getIRBlaster method just in case
-	private IRBlasterCallback mIrBlasterReadyCallback = new IRBlasterCallback()
+	public KitKatRC5Sender(Context c) throws Exception
 	{
-		@Override
-        public void IRBlasterReady() { }
+		mKkIr = (ConsumerIrManager)c.getSystemService(Context.CONSUMER_IR_SERVICE);
 		
-        @Override
-        public void learnIRCompleted(int status) { }
-        
-        @Override
-        public void newDeviceId(int id) { }
-	};
-	
-	public LGRC5Sender(Context context) throws Exception
-	{
-		if (IRBlaster.isSdkSupported(context))
-		{
-			mIR = IRBlaster.getIRBlaster(context, mIrBlasterReadyCallback);
-		}
-		
-		if (mIR == null)
-		{
-			throw new Exception("No LG IR Device");
-		}
+		if (!mKkIr.hasIrEmitter())
+			throw new Exception("No KitKat IR Device");
 	}
 
 	@Override
@@ -76,7 +59,7 @@ public class LGRC5Sender extends IRSender
 		// sending the code
 		try
 		{
-			mIR.sendIRPattern(FREQUENCY, frameArray);
+			mKkIr.transmit(FREQUENCY, frameArray);
 		}
 		catch (Exception e)
 		{
@@ -115,4 +98,5 @@ public class LGRC5Sender extends IRSender
 		if(currentState == true)
 			frame.add(CYCLES_IN_BURST);
 	}
+
 }
