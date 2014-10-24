@@ -73,9 +73,11 @@ public class CommandsDataSource
 	public List<Command> getAllCommands()
 	{
 		List<Command> commands = new ArrayList<Command>();
+		String orderBy = CommandDbHelper.KEY_ADDRESS + ", " + CommandDbHelper.KEY_COMMAND
+				+ ", " + CommandDbHelper.KEY_NAME;
 		
 		Cursor cursor = database.query(CommandDbHelper.DB_COMMANDS_TABLE,
-				allColumns, null, null, null, null, null);
+				allColumns, null, null, null, null, orderBy);
 		cursor.moveToFirst();
 		
 		while (!cursor.isAfterLast())
