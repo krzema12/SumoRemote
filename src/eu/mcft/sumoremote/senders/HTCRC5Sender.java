@@ -1,17 +1,16 @@
-package eu.mcft.sumoremote;
+package eu.mcft.sumoremote.senders;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import android.annotation.TargetApi;
 import android.content.Context;
-import android.hardware.ConsumerIrManager;
 
-@TargetApi(19)
-public class KitKatRC5Sender extends IRSender
+import com.htc.circontrol.CIRControl;
+import com.htc.htcircontrol.HtcIrData;
+
+public class HTCRC5Sender extends IRSender
 {
-	private ConsumerIrManager mKkIr;
-	
+	CIRControl htcIrControl;
 	static final int FREQUENCY = 38000;
 	List<Integer> frame = new ArrayList<Integer>();
 	
@@ -20,14 +19,19 @@ public class KitKatRC5Sender extends IRSender
 	
 	private static final int CYCLES_IN_BURST = 32;
 	
-	public KitKatRC5Sender(Context c) throws Exception
+	public HTCRC5Sender(Context context) throws Exception
 	{
-		mKkIr = (ConsumerIrManager)c.getSystemService(Context.CONSUMER_IR_SERVICE);
-		
-		if (!mKkIr.hasIrEmitter())
-			throw new Exception("No KitKat IR Device");
+		try
+		{
+			htcIrControl = new CIRControl(context, null);
+			htcIrControl.start();
+		}
+		catch (NoClassDefFoundError ncde)
+		{
+			throw new Exception("No HTC Device");
+		}
 	}
-
+	
 	@Override
 	public void SendCommand(int data)
 	{
@@ -59,7 +63,8 @@ public class KitKatRC5Sender extends IRSender
 		// sending the code
 		try
 		{
-			mKkIr.transmit(FREQUENCY, frameArray);
+			HtcIrData ird = new HtcIrData(1, FREQUENCY, frameArray);
+			htcIrControl.transmitIRCmd(ird, true);
 		}
 		catch (Exception e)
 		{
@@ -95,7 +100,7 @@ public class KitKatRC5Sender extends IRSender
 	
 	private void flush()
 	{
-		if(currentState == true)
+		if(currentState == false)
 			frame.add(CYCLES_IN_BURST);
 	}
 

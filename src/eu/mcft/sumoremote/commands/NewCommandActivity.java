@@ -1,20 +1,18 @@
-package eu.mcft.sumoremote;
-
-import java.util.ArrayList;
+package eu.mcft.sumoremote.commands;
 
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.PreferenceManager;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import eu.mcft.sumoremote.*;
+import eu.mcft.sumoremote.preferences.PrefsAdjustedActivity;
 
-public class NewCommandActivity extends Activity implements TextWatcher
+public class NewCommandActivity extends PrefsAdjustedActivity implements TextWatcher
 {
 	EditText name;
 	EditText address;
@@ -28,7 +26,7 @@ public class NewCommandActivity extends Activity implements TextWatcher
 	boolean correctAddress = true;
 	boolean correctCommand = true;
 	
-	private CommandDbAdapter dbAdapter;
+	private CommandsDataSource dataSource;
 	long commandID; // used if we're editing a command
 	boolean newCommand; // true if we're creating a command, false if we're editing a command
 	long existingCommandID;
@@ -37,13 +35,6 @@ public class NewCommandActivity extends Activity implements TextWatcher
 	@Override
 	protected void onCreate(Bundle savedInstanceState)
 	{
-		SharedPreferences sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
-
-		if(sharedPref.getBoolean("theme", false) == true)
-			setTheme(R.style.CustomDark);
-		else
-			setTheme(R.style.CustomLight);
-		
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_new_command);
 		
@@ -51,19 +42,19 @@ public class NewCommandActivity extends Activity implements TextWatcher
 		address = (EditText)findViewById(R.id.address);
 		command = (EditText)findViewById(R.id.command);
 
-		dbAdapter = new CommandDbAdapter(getApplicationContext());
-		dbAdapter.open();
+		dataSource = new CommandsDataSource(getApplicationContext());
+		dataSource.open();
 		
 		commandID = getIntent().getLongExtra("commandID", -1);
 		newCommand = commandID == -1;
 		
 		if (newCommand)
 		{
-			name.setText(getString(R.string.command_default_name_prefix) + " " + (dbAdapter.getNumberOfCommands() + 1));
+			name.setText(getString(R.string.command_default_name_prefix) + " " + (dataSource.getNumberOfCommands() + 1));
 		}
 		else
 		{
-			Command commandToEdit = dbAdapter.getCommand(commandID);
+			Command commandToEdit = dataSource.getCommand(commandID);
 			name.setText(commandToEdit.getName());
 			address.setText(Integer.toString(commandToEdit.getAddress()));
 			command.setText(Integer.toString(commandToEdit.getCommand()));
@@ -88,6 +79,11 @@ public class NewCommandActivity extends Activity implements TextWatcher
 	@Override
 	public void afterTextChanged(Editable textEdit)
 	{
+		// in landscape modes, this method get called when it shouldn't,
+		// so this little workaround should suppress the problem
+		if (this.menu == null)
+			return;
+		
 		if (name.getText() == textEdit)
 		{
 			String newName = textEdit.toString();
@@ -150,26 +146,26 @@ public class NewCommandActivity extends Activity implements TextWatcher
 
 				if (newCommand == false && oldName.equals(name.getText().toString()))
 				{
-					dbAdapter.updateCommand(commandID,
+					dataSource.updateCommand(commandID,
 							name.getText().toString(),
 							Integer.parseInt(address.getText().toString()),
 							Integer.parseInt(command.getText().toString()));
 				}
 				else
 				{	
-					existingCommandID = dbAdapter.findCommandIDByName(name.getText().toString());
+					existingCommandID = dataSource.findCommandIDByName(name.getText().toString());
 					
 					if (existingCommandID == -1) // if a command with such name doesn't exist
 					{
 						if (newCommand)
 						{
-							dbAdapter.insertCommand(new Command(name.getText().toString(),
+							dataSource.insertCommand(new Command(name.getText().toString(),
 																Integer.parseInt(address.getText().toString()),
 																Integer.parseInt(command.getText().toString())));
 						}
 						else
 						{
-							dbAdapter.updateCommand(commandID,
+							dataSource.updateCommand(commandID,
 									name.getText().toString(),
 									Integer.parseInt(address.getText().toString()),
 									Integer.parseInt(command.getText().toString()));
@@ -177,7 +173,7 @@ public class NewCommandActivity extends Activity implements TextWatcher
 					}
 					else
 					{
-						Command existingCommand = dbAdapter.getCommand(existingCommandID);
+						Command existingCommand = dataSource.getCommand(existingCommandID);
 						
 						if (existingCommand.getAddress() != Integer.parseInt(address.getText().toString()) ||
 							existingCommand.getCommand() != Integer.parseInt(command.getText().toString()))
@@ -190,14 +186,14 @@ public class NewCommandActivity extends Activity implements TextWatcher
 								@Override
 								public void onClick(DialogInterface dialog, int which)
 								{
-									dbAdapter.updateCommand(existingCommandID,
+									dataSource.updateCommand(existingCommandID,
 											name.getText().toString(),
 											Integer.parseInt(address.getText().toString()),
 											Integer.parseInt(command.getText().toString()));
 									
 									if (newCommand == false)
 									{
-										dbAdapter.deleteCommand(commandID);
+										dataSource.deleteCommand(commandID);
 									}
 									
 									dialog.dismiss();
@@ -237,8 +233,8 @@ public class NewCommandActivity extends Activity implements TextWatcher
 	
 	protected void onDestroy()
 	{
-		if (dbAdapter != null)
-			dbAdapter.close();
+		if (dataSource != null)
+			dataSource.close();
 		
 		super.onDestroy();
 	}

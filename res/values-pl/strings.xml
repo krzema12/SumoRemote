@@ -5,6 +5,8 @@
     <string name="action_preferences">Ustawienia</string>
     <string name="action_custom_commands">Własne komendy</string>
     <string name="action_add_command">Dodaj komendę</string>
+    <string name="action_import">Importuj do Sumo Remote</string>
+    <string name="action_share">Udostępnij</string>
     
     <string name="address_range">Adres (0&#8211;31)</string>
     <string name="command_range">Komenda (0&#8211;63)</string>
@@ -20,8 +22,9 @@
     <string name="ir_not_detected_button">Rozumiem, szkoda&#8230;</string>
     
     <string name="author">Autor: Piotr Krzemiński (mcft.eu)</string>
-    <string name="app_description">Aplikacja działa jako pilot do robotów sumo wyposażonych w takie moduły: http://www.konar.pwr.wroc.pl/sites/default/files/uploaded/moduly_opis.pdf.</string>
-    <string name="logo_description">Logo Magnat Cyber Forge Team</string>
+    <string name="partners">Partnerzy:</string>
+    <string name="mcft_logo">Logo Magnat Cyber Forge Team</string>
+    <string name="forbot_logo">Logo Forbota</string>
     <string name="people_who_helped_desc">Wielkie dzięki wszystkim, którzy pomogli mi przy tworzeniu Sumo Remote:</string>
 
     <string name="general">Ogólne</string>
@@ -29,6 +32,8 @@
     <string name="use_home_mode">Aplikacja działa jak pilot od telewizora</string>
     
     <string name="appearance">Wygląd</string>
+    <string name="screen_orientation">Orientacja ekranu</string>
+    <string name="which_way_screen_rotated">Możesz wybrać najwygodniejsze ułożenie ekranu, w zależności od sytuacji lub Twojego urządzenia.</string>
     <string name="use_dark_theme">Używaj ciemnego motywu</string>
     <string name="reduces_energy_usage">Zmniejsza zużycie energii na AMOLEDach</string>
     
@@ -44,5 +49,10 @@
     <string name="cancel">Anuluj</string>
     <string name="overwrite">Nadpisać?</string>
     <string name="overwrite_full_sentence">Komenda o takiej nazwie już istnieje. Czy chcesz ją nadpisać?</string>
+    
+    <string name="import_confirm">Potwierdź</string>
+    <string name="import_cancel">Anuluj</string>
+    
+    <string name="share_commands">Udostępnij komendy</string>
     
 </resources>

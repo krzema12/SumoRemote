@@ -1,8 +1,15 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android" >
 
 	<item
-		android:id="@+id/action_add_command"
+		android:id="@+id/action_share"
 		android:orderInCategory="1"
+		android:showAsAction="ifRoom"
+		android:title="@string/action_share"
+		android:icon="?attr/icon_share" />
+    
+	<item
+		android:id="@+id/action_add_command"
+		android:orderInCategory="2"
 		android:showAsAction="ifRoom"
 		android:title="@string/action_add_command"
 		android:icon="?attr/icon_add" />

@@ -3,5 +3,6 @@
 	<declare-styleable name="custom_menu">
 		<attr name="icon_add" format="reference" />
 		<attr name="icon_accept" format="reference" />
+		<attr name="icon_share" format="reference" />
 	</declare-styleable>
 </resources>

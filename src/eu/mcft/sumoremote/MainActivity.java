@@ -1,10 +1,14 @@
 package eu.mcft.sumoremote;
 
 import eu.mcft.sumoremote.R;
+import eu.mcft.sumoremote.commands.CustomCommandsActivity;
+import eu.mcft.sumoremote.preferences.PrefsAdjustedActivity;
+import eu.mcft.sumoremote.preferences.SetPreferenceActivity;
+import eu.mcft.sumoremote.senders.IRSender;
+import eu.mcft.sumoremote.senders.SharedIRSender;
 import android.os.Bundle;
 import android.os.Handler;
 import android.preference.PreferenceManager;
-import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -22,7 +26,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-public class MainActivity extends Activity implements OnClickListener, TextWatcher, OnTouchListener
+public class MainActivity extends PrefsAdjustedActivity implements OnClickListener, TextWatcher, OnTouchListener
 {
 	Button programButton;
 	Button startButton;
@@ -47,11 +51,6 @@ public class MainActivity extends Activity implements OnClickListener, TextWatch
 	{
 		sharedPref = PreferenceManager.getDefaultSharedPreferences(this);
 
-		if (sharedPref.getBoolean("theme", false) == true)
-			setTheme(android.R.style.Theme_Holo);
-		else
-			setTheme(android.R.style.Theme_Holo_Light);
-		
 		super.onCreate(savedInstanceState);
 		getWindow().addFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
 		

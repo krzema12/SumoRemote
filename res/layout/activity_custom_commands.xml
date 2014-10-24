@@ -14,7 +14,7 @@
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
     <ListView
-        android:id="@+id/commandsListView"
+        android:id="@+id/loadedCommandsListView"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_alignParentLeft="true"

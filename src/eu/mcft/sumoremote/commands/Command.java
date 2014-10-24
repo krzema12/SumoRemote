@@ -1,4 +1,4 @@
-package eu.mcft.sumoremote;
+package eu.mcft.sumoremote.commands;
 
 public class Command
 {
@@ -20,6 +20,11 @@ public class Command
 		this.name = name;
 		this.address = address;
 		this.command = command;
+	}
+
+	public Command()
+	{
+
 	}
 
 	public long getId()

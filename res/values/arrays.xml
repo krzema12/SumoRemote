@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="screen_orientations_values" translatable="false">
+        <item>portrait</item>
+        <item>portrait_reversed</item>
+        <item>landscape</item>
+        <item>landscape_reversed</item>
+    </string-array>
+    <string-array name="screen_orientations">
+        <item>Portrait</item>
+        <item>Reversed portrait</item>
+        <item>Landscape</item>
+        <item>Reversed landscape</item>
+    </string-array>  
+</resources>

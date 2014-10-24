@@ -1,21 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="eu.mcft.sumoremote"
-    android:versionCode="7"
-    android:versionName="1.3" >
+    android:versionCode="8"
+    android:versionName="1.4" >
 
     <uses-sdk
-        android:minSdkVersion="11"
+        android:minSdkVersion="14"
         android:targetSdkVersion="19" />
     
     <uses-permission android:name="android.permission.TRANSMIT_IR" />
-    <!--uses-feature android:name="android.hardware.consumerir"/-->
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_INTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_INTERNAL_STORAGE" />
 
     <application
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
+        
         <activity
             android:name="eu.mcft.sumoremote.MainActivity"
             android:label="@string/app_name"
@@ -23,24 +26,49 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
+            </intent-filter> 
         </activity>
         <activity
             android:name="eu.mcft.sumoremote.AboutActivity"
             android:label="@string/action_about"
             android:screenOrientation="portrait" />
         <activity
-            android:name="eu.mcft.sumoremote.SetPreferenceActivity"
+            android:name="eu.mcft.sumoremote.preferences.SetPreferenceActivity"
             android:label="@string/action_preferences"
             android:screenOrientation="portrait" />
         <activity
-            android:name="eu.mcft.sumoremote.CustomCommandsActivity"
+            android:name="eu.mcft.sumoremote.commands.CustomCommandsActivity"
             android:label="@string/action_custom_commands"
             android:screenOrientation="portrait" />
         <activity
-            android:name="eu.mcft.sumoremote.NewCommandActivity"
+            android:name="eu.mcft.sumoremote.commands.NewCommandActivity"
             android:label="@string/action_add_command"
             android:screenOrientation="portrait" />  
+            
+        <activity
+            android:name="eu.mcft.sumoremote.commands.ImportCommandsActivity"
+            android:label="@string/action_import"
+            android:screenOrientation="portrait"
+            android:launchMode="singleTask">
+            
+            <intent-filter>
+                <action android:name="com.google.android.apps.drive.DRIVE_OPEN" />
+                <action android:name="android.intent.action.VIEW" />
+                
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                
+                <data android:scheme="file" />
+                <data android:mimeType="*/*" />
+                <data android:host="*" />
+                <data android:pathPattern=".*\\.src" />
+                <!-- path pattern does not match dots correctly: http://stackoverflow.com/q/3400072/44089 -->
+                <data android:pathPattern=".*\\..*\\..*\\.src" />
+                <data android:pathPattern=".*\\..*\\..*\\..*\\.src" />
+                <data android:pathPattern=".*\\..*\\..*\\..*\\..*\\.src" />
+            </intent-filter>
+		</activity>
+
     </application>
 
 </manifest>
