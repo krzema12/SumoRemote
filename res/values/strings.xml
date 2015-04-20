@@ -39,6 +39,7 @@
 		<item>Mikołaj Belowski</item>
 		<item>Michał Kurpis</item>
 		<item>Petter Forsberg</item>
+        <item>Tomasz Wojnowski</item>
 	</string-array>
     
     <string name="address_preference" translatable="false">address</string>
