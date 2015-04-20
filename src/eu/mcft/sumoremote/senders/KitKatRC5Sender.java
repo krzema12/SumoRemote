@@ -6,6 +6,7 @@ import java.util.List;
 import android.annotation.TargetApi;
 import android.content.Context;
 import android.hardware.ConsumerIrManager;
+import android.os.Build;
 
 @TargetApi(19)
 public class KitKatRC5Sender extends IRSender
@@ -18,10 +19,16 @@ public class KitKatRC5Sender extends IRSender
 	boolean currentState;
 	boolean firstBit;
 	
-	private static final int CYCLES_IN_BURST = 32;
+	private static int CYCLES_IN_BURST = 32;
 	
 	public KitKatRC5Sender(Context c) throws Exception
 	{
+		// a workaround of some problem on Android 5.0
+		if (android.os.Build.VERSION.SDK_INT > Build.VERSION_CODES.KITKAT)
+		{
+			CYCLES_IN_BURST = 32*30;
+		}
+
 		mKkIr = (ConsumerIrManager)c.getSystemService(Context.CONSUMER_IR_SERVICE);
 		
 		if (!mKkIr.hasIrEmitter())
