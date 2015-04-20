@@ -3,6 +3,7 @@ package eu.mcft.sumoremote.commands;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,7 +41,7 @@ public class ImportCommandsActivity extends PrefsAdjustedActivity implements OnC
 		
 		confirmButton.setOnClickListener(this);
 		cancelButton.setOnClickListener(this);
-		
+
 		Intent intent = getIntent();
 		Uri data = intent.getData();
 		
@@ -50,24 +51,23 @@ public class ImportCommandsActivity extends PrefsAdjustedActivity implements OnC
 		    
 			try
 			{
-				importData(data.getPath());
+				importData(data);
 		    }
 			catch (Exception e)
 			{
-		      // TODO warn user about bad data here
-		      finish();
-		      return;
+				// TODO warn user about bad data here
+				finish();
+				return;
 			}
 		}
 
-		// TODO launch home Activity (with FLAG_ACTIVITY_CLEAR_TOP) here…
+		// TODO launch home Activity (with FLAG_ACTIVITY_CLEAR_TOP) here
 	}
 	
-	private void importData(String path) throws Exception
+	private void importData(Uri data) throws Exception
 	{
-		File file = new File(path);
-		BufferedReader br = new BufferedReader(new FileReader(file));        
-        InputSource is = new InputSource(br);
+		InputStream input = getContentResolver().openInputStream(data);
+        InputSource is = new InputSource(input);
         CustomCommandsXMLParser parser = new CustomCommandsXMLParser(getApplicationContext(), loadedCommands);
         SAXParserFactory factory = SAXParserFactory.newInstance();
         SAXParser sp = factory.newSAXParser();
